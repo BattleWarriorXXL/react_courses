@@ -17,7 +17,9 @@
 <body>
     <header>
         <div class="header__left">
-            <i class="icon icon__menu"></i>
+            <div class="header__menu">
+                <i class="icon icon__menu"></i>
+            </div>
             <a href="/html-css/" class="icon icon__logo"></a>
         </div>
         <div class="search">
@@ -25,9 +27,14 @@
             <i class="icon icon__search"></i>
         </div>
         <div class="header__right">
-            <i class="icon icon__camera"></i>
-            <i class="icon icon__apps"></i>
-            <i class="icon icon__notification"></i>
+            <div class="header__apps">
+                <i class="icon icon__camera"></i>
+                <i class="icon icon__apps"></i>
+                <i class="icon icon__notification"></i>
+            </div>
+            <div class="search_small">
+                <i class="icon icon__search"></i>
+            </div>
             <img class="icon icon__profile" src="./assets/images/profile.svg" />
         </div>
     </header>
@@ -60,12 +67,20 @@
             <a href="#" class="menu__item"><i class="icon icon__setting"></i>Setting</a>
         </div>
     </nav>
+    <nav-bottom>
+        <div class="menu-bottom">
+            <a href="#" class="menu__item menu__item_active"><i class="icon icon__home"></i>Home</a>
+            <a href="#" class="menu__item"><i class="icon icon__fire"></i>Trending</a>
+            <a href="#" class="menu__item"><i class="icon icon__subscription"></i>Subscription</a>
+            <a href="#" class="menu__item"><i class="icon icon__library"></i>Library</a>
+        </div>
+    </nav-bottom>
     <main>
         <section class="section__content">
             <a class="section__title" href="./content/channel.html">
                 <img class="icon icon__profile_large" src="./assets/images/user1_large.svg" />
                 <h2>Gussie Singleton</h2></a>
-            </a>
+            </nav-bottom>
             <div class="section__video_row">
                 <div class="video__container">
                     <div class="video__content_small">
@@ -260,8 +275,10 @@
             <div class="section__title">
                 <img class="icon icon__profile_large" src="./assets/images/food_and_drink.svg" />
                 <h2>Food & Drink</h2></a>
-                <span class="section__title-recomendation left-space">Recommended channel for you</span>
-                <a class="button button-red left" href="#">Subscribe 2.3m</a>
+                <div class="recommendation-container">
+                    <span class="section__title-recomendation">Recommended channel for you</span>
+                    <a class="button button-red" href="#">Subscribe 2.3m</a>
+                </div>
             </div>
             <div class="section__video_row">
                 <div class="video__container">

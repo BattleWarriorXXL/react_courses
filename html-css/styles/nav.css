@@ -6,7 +6,42 @@ nav {
     width: 200px;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: auto;
+    background-color: #ffffff;
+    z-index: 100;
+}
+
+@media screen and (max-width: 900px) {
+    nav {
+        display: none;
+    }
+}
+
+nav-bottom {
+    position: fixed;
+    display: none;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 200;
+    border-top: 1px solid #F1F1F1;
+}
+
+@media screen and (max-width: 320px) {
+    nav-bottom {
+        display: flex;
+    }
+}
+
+.header__menu {
+    display: flex;
+}
+
+@media screen and (max-width: 320px) {
+    .header__menu {
+        display: none;
+    }
 }
 
 .menu {
@@ -35,6 +70,12 @@ nav {
     padding-top: 20px;
 }
 
+@media screen and (max-width: 320px) {
+    .menu__item:not(:first-child) {
+        padding: 0px;
+    }
+}
+
 .menu__item:hover {
     color: #000000;
 }
@@ -50,4 +91,24 @@ nav {
 .menu__title {
     font-size: 18px;
     color: #000000;
+}
+
+.menu-bottom {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 10px;
+}
+
+@media screen and (max-width: 320px) {
+    .menu-bottom .menu__item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu__item .icon {
+        margin: auto;
+    }
 }

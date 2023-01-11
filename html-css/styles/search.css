@@ -8,6 +8,12 @@
     padding: 0 10px;
 }
 
+@media screen and (max-width: 900px) {
+    .search {
+        display: none;
+    }
+}
+
 .search__input {
     width: 100%;
     padding-left: 15px;
@@ -17,4 +23,15 @@
 
 .search__input:focus {
     outline: none !important;
+}
+
+.search_small {
+    display: none;
+}
+
+@media screen and (max-width: 900px) {
+    .search_small {
+        display: flex;
+        margin-right: 15px;
+    }
 }
