@@ -37,3 +37,7 @@ h5 {
 input:placeholder-shown {
     font-family: 'Muli';
 }
+
+.left {
+    margin-left: auto;
+}

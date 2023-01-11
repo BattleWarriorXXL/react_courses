@@ -6,6 +6,16 @@
     cursor: pointer;    
 }
 
+.icon__profile_small {
+    height: 26px;
+    width: 26px;
+}
+
+.icon__profile_large {
+    height: 50px;
+    width: 50px;
+}
+
 .icon__active {
     fill: #ff0000;
 }
@@ -122,40 +132,4 @@
     height: 18px;
     width: 18px;
     background-image: url("../assets/icons/subscription.svg");
-}
-
-.icon__user1 {
-    height: 26px;
-    width: 26px;
-    background-image: url("../assets/icons/user1.svg");
-}
-
-.icon__user2 {
-    height: 26px;
-    width: 26px;
-    background-image: url("../assets/icons/user2.svg");
-}
-
-.icon__user3 {
-    height: 26px;
-    width: 26px;
-    background-image: url("../assets/icons/user3.svg");
-}
-
-.icon__user4 {
-    height: 26px;
-    width: 26px;
-    background-image: url("../assets/icons/user4.svg");
-}
-
-.icon__user5 {
-    height: 26px;
-    width: 26px;
-    background-image: url("../assets/icons/user5.svg");
-}
-
-.icon__user6 {
-    height: 26px;
-    width: 26px;
-    background-image: url("../assets/icons/user6.svg");
 }

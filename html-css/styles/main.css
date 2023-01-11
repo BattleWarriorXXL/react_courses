@@ -20,6 +20,12 @@ main {
     align-items: center;
 }
 
+.section__title-recomendation {
+    margin-left: 15px;
+    font-size: 16px;
+    color: #C2C2C2;
+}
+
 .section__video_row {
     display: flex;
     flex-direction: row;
@@ -32,6 +38,10 @@ main {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+.video__container:hover {
+    cursor: pointer;
 }
 
 .video__container:not(:first-child) {
@@ -74,4 +84,16 @@ main {
     border-radius: 30px;
     color: #ffffff;
     font-size: 13px;
+}
+
+.button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+}
+
+.button-red {
+    background-color: #ff0000;
+    color: #ffffff;
 }
