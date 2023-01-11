@@ -2,7 +2,7 @@ main {
     width: auto;
     margin-top: 80px;
     margin-left: 200px;
-    padding: 20px;
+    padding: 30px;
 }
 
 .section__content {
@@ -21,9 +21,13 @@ main {
 }
 
 .section__title-recomendation {
-    margin-left: 15px;
     font-size: 16px;
     color: #C2C2C2;
+}
+
+.section__tab {
+    display: flex;
+    align-items: center;
 }
 
 .section__video_row {
@@ -46,6 +50,24 @@ main {
 
 .video__container:not(:first-child) {
     margin-left: 40px;
+}
+
+.video__container-with-description {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.video__description-container {
+    height: 100%;
+    max-width: 540px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 30px;
+}
+
+.video__description-text {
+    margin-top: 15px;
 }
 
 .video__content_small {
@@ -86,14 +108,22 @@ main {
     font-size: 13px;
 }
 
-.button {
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 30px;
-    border: none;
+.tab__title {
+    color: #000000;
+    font-size: 18px;
+    text-decoration: none;
 }
 
-.button-red {
-    background-color: #ff0000;
-    color: #ffffff;
+.tab__title:not(:first-child) {
+    margin-left: 60px;
+}
+
+.tab__title:hover {
+    text-decoration: underline;
+}
+
+.tab__title_active {
+    color: #ff0000;
+    font-weight: bold;
+    text-decoration: underline;
 }

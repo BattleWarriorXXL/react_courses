@@ -38,6 +38,39 @@ input:placeholder-shown {
     font-family: 'Muli';
 }
 
+a {
+    text-decoration: none;
+}
+
+.button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+}
+
+.button-red {
+    background-color: #ff0000;
+    color: #ffffff;
+}
+
 .left {
-    margin-left: auto;
+    margin-left: auto !important;
+}
+
+.bottom {
+    margin-top: auto !important;
+}
+
+.left-space {
+    margin-left: 15px;
+}
+
+.right-space {
+    margin-right: 15px;
+}
+
+.container-horizontal {
+    display: flex;
+    align-items: center;
 }

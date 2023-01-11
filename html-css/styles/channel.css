@@ -1,0 +1,38 @@
+.channel__image {
+    width: 100%;
+    height: 280px;
+    border-radius: 15px;
+}
+
+.section_channel-container {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: row;
+}
+
+.channel__recommendation-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.channel__recommendation-title {
+    color: #C2C2C2;
+}
+
+.channel__recommendation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.channel__recommendation:hover {
+    cursor: pointer;
+}
+
+.section__channel-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 35px;
+}

@@ -11,9 +11,19 @@
     width: 26px;
 }
 
+.icon__profile {
+    height: 40px;
+    width: 40px;
+}
+
 .icon__profile_large {
     height: 50px;
     width: 50px;
+}
+
+.icon__profile_xlarge {
+    height: 80px;
+    width: 80px;
 }
 
 .icon__active {
@@ -54,12 +64,6 @@
     height: 26px;
     width: 22px;
     background-image: url("../assets/icons/notification.svg");
-}
-
-.icon__profile {
-    height: 40px;
-    width: 40px;
-    background-image: url("../assets/icons/profile.svg");
 }
 
 .icon__chevron-down {
