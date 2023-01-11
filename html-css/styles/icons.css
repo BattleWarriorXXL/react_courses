@@ -1,0 +1,161 @@
+.icon {
+    margin-right: 10px;
+}
+
+.icon:hover {
+    cursor: pointer;    
+}
+
+.icon__active {
+    fill: #ff0000;
+}
+
+.icon__menu {
+    height: 17px;
+    width: 20px;
+    background-image: url("../assets/icons/menu.svg");
+}
+
+.icon__logo {
+    height: 25px;
+    width: 116px;
+    background-image: url("../assets/icons/logo.svg");
+}
+
+.icon__search {
+    height: 18.21px;
+    width: 18.21px;
+    background-image: url("../assets/icons/search.svg");
+}
+
+.icon__camera {
+    height: 20px;
+    width: 27px;
+    background-image: url("../assets/icons/camera.svg");
+}
+
+.icon__apps {
+    height: 21px;
+    width: 21px;
+    background-image: url("../assets/icons/apps.svg");
+}
+
+.icon__notification {
+    height: 26px;
+    width: 22px;
+    background-image: url("../assets/icons/notification.svg");
+}
+
+.icon__profile {
+    height: 40px;
+    width: 40px;
+    background-image: url("../assets/icons/profile.svg");
+}
+
+.icon__chevron-down {
+    height: 8px;
+    width: 14px;
+    background-image: url("../assets/icons/chevron-down.svg");
+}
+
+.icon__fire {
+    height: 21px;
+    width: 16px;
+    background-image: url("../assets/icons/fire.svg");
+}
+
+.icon__game {
+    height: 16px;
+    width: 22px;
+    background-image: url("../assets/icons/game.svg");
+}
+
+.icon__heart {
+    height: 17px;
+    width: 18px;
+    background-image: url("../assets/icons/heart.svg");
+}
+
+.icon__history {
+    height: 18px;
+    width: 20px;
+    background-image: url("../assets/icons/history.svg");
+}
+
+.icon__home {
+    height: 19px;
+    width: 20px;
+    background-image: url("../assets/icons/home.svg");
+}
+
+.icon__library {
+    height: 16px;
+    width: 20px;
+    background-image: url("../assets/icons/library.svg");
+}
+
+.icon__music {
+    height: 20px;
+    width: 18px;
+    background-image: url("../assets/icons/music.svg");
+}
+
+.icon__setting {
+    height: 20px;
+    width: 19px;
+    background-image: url("../assets/icons/setting.svg");
+}
+
+.icon__start {
+    height: 18px;
+    width: 19px;
+    background-image: url("../assets/icons/star.svg");
+}
+
+.icon__watch {
+    height: 19px;
+    width: 17px;
+    background-image: url("../assets/icons/watch.svg");
+}
+
+.icon__subscription {
+    height: 18px;
+    width: 18px;
+    background-image: url("../assets/icons/subscription.svg");
+}
+
+.icon__user1 {
+    height: 26px;
+    width: 26px;
+    background-image: url("../assets/icons/user1.svg");
+}
+
+.icon__user2 {
+    height: 26px;
+    width: 26px;
+    background-image: url("../assets/icons/user2.svg");
+}
+
+.icon__user3 {
+    height: 26px;
+    width: 26px;
+    background-image: url("../assets/icons/user3.svg");
+}
+
+.icon__user4 {
+    height: 26px;
+    width: 26px;
+    background-image: url("../assets/icons/user4.svg");
+}
+
+.icon__user5 {
+    height: 26px;
+    width: 26px;
+    background-image: url("../assets/icons/user5.svg");
+}
+
+.icon__user6 {
+    height: 26px;
+    width: 26px;
+    background-image: url("../assets/icons/user6.svg");
+}

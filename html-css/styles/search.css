@@ -1,0 +1,19 @@
+.search {
+    height: 40px;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    background-color: #EBEBEB;
+    padding: 0 10px;
+}
+
+.search__input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+.search__input:focus {
+    outline: none !important;
+}

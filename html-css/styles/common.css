@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Muli';
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+}
+
+h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+}
+
+h5 {
+    font-size: 13px;
+    font-weight: 100;
+    text-decoration: none;
+}
+
+input:placeholder-shown {
+    font-family: 'Muli';
+}

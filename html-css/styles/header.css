@@ -1,0 +1,26 @@
+header {
+    position: fixed;
+    top: 0;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    z-index: 100;
+}
+
+.header__left {
+    min-width: 175px;
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+    justify-content: space-between;
+}
+
+.header__right {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
