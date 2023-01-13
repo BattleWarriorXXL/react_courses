@@ -6,9 +6,10 @@
     border-radius: 25px;
     background-color: #EBEBEB;
     padding: 0 10px;
+    margin-left: 30px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 768px) {
     .search {
         display: none;
     }
@@ -29,7 +30,7 @@
     display: none;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 768px) {
     .search_small {
         display: flex;
         margin-right: 15px;

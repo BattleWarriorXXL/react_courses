@@ -4,7 +4,7 @@
     border-radius: 15px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 768px) {
     .channel__image {
         position: absolute;
         top: 0;
@@ -36,7 +36,7 @@
     margin-top: 15px;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1440px) {
     .channel__recommendation-container {
         display: none;
     }
@@ -53,7 +53,7 @@
     margin-top: 35px;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1250px) {
     .section__channel-content {
         display: none;
     }
@@ -65,7 +65,7 @@
     margin-left: auto;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 768px) {
     .subscribe-container {
         width: 100%;
     }
@@ -79,7 +79,7 @@
     }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 768px) {
     .channel-title {
         flex-direction: column;
         z-index: 100;
@@ -96,7 +96,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 768px) {
     .channel-title {
         align-items: flex-start;
         margin-top: 35px;
