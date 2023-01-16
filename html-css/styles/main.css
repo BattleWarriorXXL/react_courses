@@ -39,7 +39,6 @@ main {
 }
 
 .section__tab {
-    width: 100vh;
     display: flex;
     align-items: center;
 }
