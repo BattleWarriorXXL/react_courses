@@ -18,10 +18,6 @@
     color: var(--title-font-color);
 }
 
-.calculator__theme-control {
-
-}
-
 .calculator__output-section {
     height: 50px;
     min-height: 50px;
