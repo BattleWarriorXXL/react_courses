@@ -26,7 +26,7 @@
         </header>
         <main>
             <div class="calculator__output-section">
-                <input class="calculator__output" placeholder="0" />
+                <input id="output" class="calculator__output" placeholder="0" />
             </div>
             <div class="calculator__control-section">
                 <div class="calculator__command-row">
@@ -39,7 +39,7 @@
                     <button class="button">AC</button>
                     <button class="button">&#177;</button>
                     <button class="button">%</button>
-                    <button class="button button_primary">&#247;</button>
+                    <button id="divide_button" class="button button_primary">&#247;</button>
                 </div>
                 <div class="calculator__command-row">
                     <button class="button">2<sup><small>nd</small></sup></button>
@@ -48,10 +48,10 @@
                     <button class="button">x<sup><small>y</small></sup></button>
                     <button class="button">&#101;<sup><small>x</small></sup></button>
                     <button class="button">10<sup><small>x</small></sup></button>
-                    <button class="button button_secondary">7</button>
-                    <button class="button button_secondary">8</button>
-                    <button class="button button_secondary">9</button>
-                    <button class="button button_primary">&#215;</button>
+                    <button id="seven_button" class="button button_secondary">7</button>
+                    <button id="eight_button" class="button button_secondary">8</button>
+                    <button id="nine_button" class="button button_secondary">9</button>
+                    <button id="multiply_button" class="button button_primary">&#215;</button>
                 </div>
                 <div class="calculator__command-row">
                     <button class="button">1/x</button>
@@ -60,10 +60,10 @@
                     <button class="button"><sup><small>y</small></sup>&#8730;x</button>
                     <button class="button">ln</button>
                     <button class="button">log<sub><small>10</small></sub></button>
-                    <button class="button button_secondary">4</button>
-                    <button class="button button_secondary">5</button>
-                    <button class="button button_secondary">6</button>
-                    <button class="button button_primary">-</button>
+                    <button id="four_button" class="button button_secondary">4</button>
+                    <button id="five_button" class="button button_secondary">5</button>
+                    <button id="six_button" class="button button_secondary">6</button>
+                    <button id="substract_button" class="button button_primary">-</button>
                 </div>
                 <div class="calculator__command-row">
                     <button class="button">x!</button>
@@ -72,10 +72,10 @@
                     <button class="button">tan</button>
                     <button class="button">e</button>
                     <button class="button">EE</button>
-                    <button class="button button_secondary">1</button>
-                    <button class="button button_secondary">2</button>
-                    <button class="button button_secondary">3</button>
-                    <button class="button button_primary">+</button>
+                    <button id="one_button" class="button button_secondary">1</button>
+                    <button id="two_button" class="button button_secondary">2</button>
+                    <button id="three_button" class="button button_secondary">3</button>
+                    <button id="add_button" class="button button_primary">+</button>
                 </div>
                 <div class="calculator__command-row">
                     <button class="button">Rad</button>
@@ -84,14 +84,15 @@
                     <button class="button">tanh</button>
                     <button class="button">&#120587;</button>
                     <button class="button">Rand</button>
-                    <button class="button button_large button_secondary">0</button>
+                    <button id="zero_button" class="button button_large button_secondary">0</button>
                     <button class="button button_secondary">,</button>
                     <button class="button button_primary">=</button>
                 </div>
             </div>
         </main>
     </div>
-
+    
     <script src="./src/app/toggle/toggle.js"></script>
+    <script src="./src/app/ui/ui_dispatcher.js"></script>
 </body>
 </html>
