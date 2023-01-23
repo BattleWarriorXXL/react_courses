@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,7 +25,7 @@
         </header>
         <main>
             <div class="calculator__output-section">
-                <input id="output" class="calculator__output" placeholder="0" />
+                <input id="output" class="calculator__output" placeholder="0" readonly />
             </div>
             <div class="calculator__control-section">
                 <div class="calculator__command-row">
@@ -36,7 +35,7 @@
                     <button class="button">m+</button>
                     <button class="button">m-</button>
                     <button class="button">mr</button>
-                    <button class="button">AC</button>
+                    <button id="clear_button" class="button">AC</button>
                     <button class="button">&#177;</button>
                     <button class="button">%</button>
                     <button id="divide_button" class="button button_primary">&#247;</button>
@@ -85,14 +84,14 @@
                     <button class="button">&#120587;</button>
                     <button class="button">Rand</button>
                     <button id="zero_button" class="button button_large button_secondary">0</button>
-                    <button class="button button_secondary">,</button>
-                    <button class="button button_primary">=</button>
+                    <button id="comma_button" class="button button_secondary">.</buttonid>
+                    <button id="result_button" class="button button_primary">=</button>
                 </div>
             </div>
         </main>
     </div>
     
-    <script src="./src/app/toggle/toggle.js"></script>
-    <script src="./src/app/ui/ui_dispatcher.js"></script>
+    <script src="./src/app/toggle/toggle.js" async></script>
+    <script type="module" src="./src/app/ui/ui_dispatcher.js" defer></script>
 </body>
 </html>
