@@ -1,5 +1,69 @@
 import Command from "./command_base.js";
 
+class AddMemoryCommand extends Command {
+    constructor(calculator, value) {
+        super();
+
+        var undoResult = calculator.getResult();
+
+        this.execute = function () {
+            calculator.addMemory(value);
+        };
+
+        this.undo = function () {
+            calculator.setResult(undoResult);
+        };
+    }
+}
+
+class SubstractMemoryCommand extends Command {
+    constructor(calculator, value) {
+        super();
+
+        var undoResult = calculator.getResult();
+
+        this.execute = function () {
+            calculator.substractMemory(value);
+        };
+
+        this.undo = function () {
+            calculator.setResult(undoResult);
+        };
+    }
+}
+
+class RecallMemoryCommand extends Command {
+    constructor(calculator) {
+        super();
+
+        var undoResult = calculator.getResult();
+
+        this.execute = function () {
+            calculator.recallMemory();
+        };
+
+        this.undo = function () {
+            calculator.setResult(undoResult);
+        };
+    }
+}
+
+class ClearMemoryCommand extends Command {
+    constructor(calculator) {
+        super();
+
+        var undoResult = calculator.getResult();
+
+        this.execute = function () {
+            calculator.clearMemory();
+        };
+
+        this.undo = function () {
+            calculator.setResult(undoResult);
+        };
+    }
+}
+
 class AddCommand extends Command {
     constructor(calculator, left, right) {
         super();
@@ -481,6 +545,10 @@ class RandomCommand extends Command {
 }
 
 export {
+    AddMemoryCommand,
+    SubstractMemoryCommand,
+    RecallMemoryCommand,
+    ClearMemoryCommand,
     AddCommand,
     SubstractCommand,
     MultiplyCommand,

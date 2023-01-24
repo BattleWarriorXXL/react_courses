@@ -10,6 +10,7 @@ class UIDispatcher {
         this.initClearOperations();
         this.initResultOperation();
         this.initUndoOperation();
+        this.initMemoryOperations();
 
         this.outputDispatcher = new OutputDispatcher();
         this.dispatcher = new Dispatcher();
@@ -193,6 +194,29 @@ class UIDispatcher {
         undo_button.addEventListener("click", () => {
             let result = this.dispatcher.getResult(null, "undo");
             this.outputDispatcher.updateResult(result);
+        });
+    };
+
+    initMemoryOperations = function () {
+        const memory_clear_button = document.getElementById("memory_clear_button");
+        memory_clear_button.addEventListener("click", () => {
+            this.dispatcher.getResult(null, "clear_memory");
+        });
+
+        const memory_add_button = document.getElementById("memory_add_button");
+        memory_add_button.addEventListener("click", () => {
+            this.dispatcher.getResult(this.outputDispatcher.left, "add_memory");
+        });
+
+        const memory_substract_button = document.getElementById("memory_substract_button");
+        memory_substract_button.addEventListener("click", () => {
+            this.dispatcher.getResult(this.outputDispatcher.left, "substract_memory");
+        });
+
+        const memory_recall_button = document.getElementById("memory_recall_button");
+        memory_recall_button.addEventListener("click", () => {
+            let result = this.dispatcher.getResult(null, "recall_memory");
+            this.outputDispatcher.updateConstantResult(result);
         });
     };
 

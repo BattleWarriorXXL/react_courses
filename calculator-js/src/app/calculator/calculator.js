@@ -1,6 +1,23 @@
 class Calculator {
     constructor() {
         this.result = 0;
+        this.memory = 0;
+
+        this.addMemory = function (value) {
+            this.memory += value;
+        };
+
+        this.substractMemory = function (value) {
+            this.memory -= value;
+        };
+
+        this.recallMemory = function () {
+            this.result = this.memory;
+        };
+
+        this.clearMemory = function () {
+            this.memory = 0;
+        };
 
         this.add = function (left, right) {
             if (!left) {
@@ -29,10 +46,6 @@ class Calculator {
         this.divide = function (left, right) {
             if (!left) {
                 left = this.result;
-            }
-
-            if (right === 0) {
-                throw new Error("Divide by zero is forbidden.");
             }
 
             this.result = left / right;

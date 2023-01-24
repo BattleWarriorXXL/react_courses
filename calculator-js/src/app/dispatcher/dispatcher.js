@@ -29,7 +29,11 @@ import {
     XRootYCommand,
     ECommand,
     PICommand,
-    RandomCommand
+    RandomCommand,
+    AddMemoryCommand,
+    SubstractMemoryCommand,
+    RecallMemoryCommand,
+    ClearMemoryCommand
 } from "../commands/commands.js";
 
 class Dispatcher {
@@ -37,6 +41,30 @@ class Dispatcher {
         this.command = null;
         this.commands = [];
         this.calculator = new Calculator();
+
+        this.addMemory = function(value) {
+            this.command = new AddMemoryCommand(this.calculator, value);
+            this.commands.push(this.command);
+            this.command.execute();
+        };
+
+        this.substractMemory = function(value) {
+            this.command = new SubstractMemoryCommand(this.calculator, value);
+            this.commands.push(this.command);
+            this.command.execute();
+        };
+
+        this.recallMemory = function() {
+            this.command = new RecallMemoryCommand(this.calculator);
+            this.commands.push(this.command);
+            this.command.execute();
+        };
+
+        this.clearMemory = function() {
+            this.command = new ClearMemoryCommand(this.calculator);
+            this.commands.push(this.command);
+            this.command.execute();
+        };
 
         this.add = function(left, right) {
             this.command = new AddCommand(this.calculator, left, right);
@@ -73,7 +101,6 @@ class Dispatcher {
             this.commands.push(this.command);
             this.command.execute();
         };
-
 
         this.percentage = function(value) {
             this.command = new PercentageCommand(this.calculator, value);
@@ -221,7 +248,7 @@ class Dispatcher {
 
         this.undo = function() {
             if (!this.commands.length) {
-                return;
+                return 0;
             }
 
             this.command = this.commands.pop();
@@ -320,6 +347,18 @@ class Dispatcher {
             case "random":
                 this.random();
                 break;
+            case "add_memory":
+                this.addMemory(parseFloat(left));
+                return;
+            case "substract_memory":
+                this.substractMemory(parseFloat(left));
+                return;
+            case "recall_memory":
+                this.recallMemory();
+                break;
+            case "clear_memory":
+                this.clearMemory();
+                return;
             case "undo":
                 this.undo();
                 break;

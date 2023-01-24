@@ -85,6 +85,21 @@ class OutputDispatcher {
                 return;
             }
 
+            if (this.left && !this.operation) {
+                return;
+            }
+
+            this.right = result;
+            this.output.value = this.left + this.operation + this.right;
+        };
+
+        this.updateMemoryResult = function (result) {
+            if (!this.left && !this.operation) {
+                this.left = result.toString();
+                this.output.value = result;
+                return;
+            }
+
             this.right = result;
             this.output.value = this.left + this.operation + this.right;
         };
