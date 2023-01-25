@@ -1,11 +1,5 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-}
+@import url("./main.css");
+@import url("./toggle.css");
+@import url("./button.css");
+@import url("./theme.css");
+@import url("./calculator.css");

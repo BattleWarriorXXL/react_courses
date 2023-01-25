@@ -1,0 +1,45 @@
+.dark-mode {
+    --body-color: #EEEEEE;
+    --header-color: #B3B3B3;
+    --title-font-color: #000000;
+    --output-color: #B3B3B3;
+    --output-font-color: #000000;
+    --output-font-placeholder-color: #747474;
+    --primary-button-color: #CDCDCD;
+    --primary-button-hover-color: #a492ca;
+    --primary-button-active-color: #826fa9;
+    --primary-buttom-font-color: #000000;
+    --secondary-button-color: #FFFFFF;
+    --secondary-button-hover-color: #4a80be;
+    --secondary-button-active-color: #4778b1;
+    --secondary-buttom-font-color: #000000;
+    --button-color: #E6E6E6;
+    --button-hover-color: #D0D0D7;
+    --button-active-color: #B1B1B9;
+    --button-border-color: #B3B3B3;
+    --button-font-color: #000000;
+    --toggle-color: #e9e9ed;
+}
+
+.dark-mode.active {
+    --body-color: #757677;
+    --header-color: #48494A;
+    --title-font-color: #ffffff;
+    --output-color: #48494A;
+    --output-font-color: #ffffff;
+    --output-font-placeholder-color: #ffffff;
+    --primary-button-color: #FE9E09;
+    --primary-button-hover-color: #f59608;
+    --primary-button-active-color: #e28b08;
+    --primary-buttom-font-color: #ffffff;
+    --secondary-button-color: #757677;
+    --secondary-button-hover-color: #636464;
+    --secondary-button-active-color: #575858;
+    --secondary-buttom-font-color: #ffffff;
+    --button-color: #5A5B5C;
+    --button-hover-color: #4e4f50;
+    --button-active-color: #434546;
+    --button-border-color: #48494A;
+    --button-font-color: #ffffff;
+    --toggle-color: #2d2d2d;
+}
