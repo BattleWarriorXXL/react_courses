@@ -247,4 +247,4 @@ class UIDispatcher {
     };
 }
 
-new UIDispatcher();
+export default UIDispatcher;
