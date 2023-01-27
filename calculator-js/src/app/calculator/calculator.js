@@ -56,7 +56,7 @@ class Calculator {
                 left = this.result;
             }
 
-            this.result = Math.pow(left, right);
+            this.result = left ** right;;
         };
 
         this.xRootY = function (left, right) {
@@ -64,7 +64,7 @@ class Calculator {
                 left = this.result;
             }
 
-            this.result = Math.pow(left, 1 / right);
+            this.result = left ** (1 / right);
         };
 
         this.percentage = function (value) {
@@ -76,23 +76,23 @@ class Calculator {
         };
 
         this.square = function (value) {
-            this.result = value * value;
+            this.result = value ** 2;
         };
 
         this.cube = function (value) {
-            this.result = value * value * value;
+            this.result = value ** 3;
         };
 
         this.ePowX = function (value) {
-            this.result = Math.pow(Math.E, value);
+            this.result = Math.E ** value;
         };
 
         this.xPowE = function (value) {
-            this.result = Math.pow(value, Math.E);
+            this.result = value ** Math.E;
         };
 
         this.tenPowX = function (value) {
-            this.result = Math.pow(10, value);
+            this.result = 10 ** value;;
         };
 
         this.inverse = function (value) {
@@ -100,11 +100,11 @@ class Calculator {
         };
 
         this.squareRoot = function (value) {
-            this.result = Math.sqrt(value);
+            this.result = value ** (1 / 2);
         };
 
         this.cubeRoot = function (value) {
-            this.result = Math.cbrt(value);
+            this.result = value ** (1 / 3);
         };
 
         this.ln = function (value) {

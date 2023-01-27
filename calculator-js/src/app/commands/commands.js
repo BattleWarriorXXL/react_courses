@@ -1,10 +1,10 @@
-import Command from "./command_base.js";
+import Command from "./command-base.js";
 
 class AddMemoryCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.addMemory(value);
@@ -20,7 +20,7 @@ class SubstractMemoryCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.substractMemory(value);
@@ -36,7 +36,7 @@ class RecallMemoryCommand extends Command {
     constructor(calculator) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.recallMemory();
@@ -52,7 +52,7 @@ class ClearMemoryCommand extends Command {
     constructor(calculator) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.clearMemory();
@@ -68,7 +68,7 @@ class AddCommand extends Command {
     constructor(calculator, left, right) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.add(left, right);
@@ -84,7 +84,7 @@ class SubstractCommand extends Command {
     constructor(calculator, left, right) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.substract(left, right);
@@ -100,7 +100,7 @@ class MultiplyCommand extends Command {
     constructor(calculator, left, right) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.multiply(left, right);
@@ -116,7 +116,7 @@ class DivideCommand extends Command {
     constructor(calculator, left, right) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.divide(left, right);
@@ -132,7 +132,7 @@ class XPowYCommand extends Command {
     constructor(calculator, left, right) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.xPowY(left, right);
@@ -148,7 +148,7 @@ class XRootYCommand extends Command {
     constructor(calculator, left, right) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.xRootY(left, right);
@@ -164,7 +164,7 @@ class PercentageCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.percentage(value);
@@ -180,7 +180,7 @@ class NegativeCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.negative(value);
@@ -196,7 +196,7 @@ class SquareCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.square(value);
@@ -212,7 +212,7 @@ class CubeCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.cube(value);
@@ -228,7 +228,7 @@ class EPowXCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.ePowX(value);
@@ -244,7 +244,7 @@ class XPowECommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.xPowE(value);
@@ -260,7 +260,7 @@ class TenPowXCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.tenPowX(value);
@@ -276,7 +276,7 @@ class InverseCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.inverse(value);
@@ -292,7 +292,7 @@ class SquareRootCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.squareRoot(value);
@@ -308,7 +308,7 @@ class CubeRootCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.cubeRoot(value);
@@ -324,7 +324,7 @@ class LnCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.ln(value);
@@ -340,7 +340,7 @@ class LogCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.log(value);
@@ -356,7 +356,7 @@ class FactorialCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.factorial(value);
@@ -372,7 +372,7 @@ class SinCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.sin(value);
@@ -388,7 +388,7 @@ class CosCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.cos(value);
@@ -404,7 +404,7 @@ class TanCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.tan(value);
@@ -420,7 +420,7 @@ class EECommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.ee(value);
@@ -436,7 +436,7 @@ class RadCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.rad(value);
@@ -452,7 +452,7 @@ class SinhCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.sinh(value);
@@ -468,7 +468,7 @@ class CoshCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.cosh(value);
@@ -484,7 +484,7 @@ class TanhCommand extends Command {
     constructor(calculator, value) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.tanh(value);
@@ -500,7 +500,7 @@ class ECommand extends Command {
     constructor(calculator) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.e();
@@ -516,7 +516,7 @@ class PICommand extends Command {
     constructor(calculator) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.pi();
@@ -532,7 +532,7 @@ class RandomCommand extends Command {
     constructor(calculator) {
         super();
 
-        var undoResult = calculator.getResult();
+        const undoResult = calculator.getResult();
 
         this.execute = function () {
             calculator.random();

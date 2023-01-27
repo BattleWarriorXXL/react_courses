@@ -42,206 +42,8 @@ class Dispatcher {
         this.commands = [];
         this.calculator = new Calculator();
 
-        this.addMemory = function(value) {
-            this.command = new AddMemoryCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.substractMemory = function(value) {
-            this.command = new SubstractMemoryCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.recallMemory = function() {
-            this.command = new RecallMemoryCommand(this.calculator);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.clearMemory = function() {
-            this.command = new ClearMemoryCommand(this.calculator);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.add = function(left, right) {
-            this.command = new AddCommand(this.calculator, left, right);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.substract = function(left, right) {
-            this.command = new SubstractCommand(this.calculator, left, right);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.multiply = function(left, right) {
-            this.command = new MultiplyCommand(this.calculator, left, right);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.divide = function(left, right) {
-            this.command = new DivideCommand(this.calculator, left, right);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.xPowY = function(left, right) {
-            this.command = new XPowYCommand(this.calculator, left, right);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.xRootY = function(left, right) {
-            this.command = new XRootYCommand(this.calculator, left, right);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.percentage = function(value) {
-            this.command = new PercentageCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.negative = function(value) {
-            this.command = new NegativeCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.square = function(value) {
-            this.command = new SquareCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.cube = function(value) {
-            this.command = new CubeCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.ePowX = function(value) {
-            this.command = new EPowXCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.xPowE = function(value) {
-            this.command = new XPowECommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.tenPowX = function(value) {
-            this.command = new TenPowXCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.inverse = function(value) {
-            this.command = new InverseCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.squareRoot = function(value) {
-            this.command = new SquareRootCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.cubeRoot = function(value) {
-            this.command = new CubeRootCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.ln = function(value) {
-            this.command = new LnCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.log = function(value) {
-            this.command = new LogCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.factorial = function(value) {
-            this.command = new FactorialCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.sin = function(value) {
-            this.command = new SinCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.cos = function(value) {
-            this.command = new CosCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.tan = function(value) {
-            this.command = new TanCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.ee = function(value) {
-            this.command = new EECommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.rad = function(value) {
-            this.command = new RadCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.sinh = function(value) {
-            this.command = new SinhCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.cosh = function(value) {
-            this.command = new CoshCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.tanh = function(value) {
-            this.command = new TanhCommand(this.calculator, value);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.e = function() {
-            this.command = new ECommand(this.calculator);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.pi = function() {
-            this.command = new PICommand(this.calculator);
-            this.commands.push(this.command);
-            this.command.execute();
-        };
-
-        this.random = function() {
-            this.command = new RandomCommand(this.calculator);
+        this.process = function(command, value1, value2) {
+            this.command = new command(this.calculator, value1, value2);
             this.commands.push(this.command);
             this.command.execute();
         };
@@ -258,106 +60,106 @@ class Dispatcher {
         this.getResult = function(left, command, right = null) {
             switch (command) {
             case "+":
-                this.add(left, right);
+                this.process(AddCommand, left, right);
                 break; 
             case "-":
-                this.substract(left, right);
+                this.process(SubstractCommand, left, right);
                 break;
             case "*":
-                this.multiply(left, right);
+                this.process(MultiplyCommand, left, right);
                 break;
             case "/":
-                this.divide(left, right);
+                this.process(DivideCommand, left, right);
                 break;
             case "^":
-                this.xPowY(left, right);
+                this.process(XPowYCommand, left, right);
                 break;
             case "root":
-                this.xRootY(left, right);
+                this.process(XRootYCommand, left, right);
                 break;
             case "%":
-                this.percentage(left);
+                this.process(PercentageCommand, left);
                 break;
             case "negative":
-                this.negative(left);
+                this.process(NegativeCommand, left);
                 break;
             case "square":
-                this.square(left);
+                this.process(SquareCommand, left);
                 break;
             case "cube":
-                this.cube(left);
+                this.process(CubeCommand, left);
                 break;
             case "e_in_x":
-                this.ePowX(left);
+                this.process(EPowXCommand, left);
                 break;
             case "x_in_e":
-                this.xPowE(left);
+                this.process(XPowECommand, left);
                 break;
             case "ten_in_x":
-                this.tenPowX(left);
+                this.process(TenPowXCommand, left);
                 break;
             case "inverse":
-                this.inverse(left);
+                this.process(InverseCommand, left);
                 break;
             case "square_root":
-                this.squareRoot(left);
+                this.process(SquareRootCommand, left);
                 break;
             case "cube_root":
-                this.cubeRoot(left);
+                this.process(CubeRootCommand, left);
                 break;
             case "ln":
-                this.ln(left);
+                this.process(LnCommand, left);
                 break;
             case "log":
-                this.log(left);
+                this.process(LogCommand, left);
                 break;
             case "factorial":
-                this.factorial(left);
+                this.process(FactorialCommand, left);
                 break;
             case "sin":
-                this.sin(left);
+                this.process(SinCommand, left);
                 break;
             case "cos":
-                this.cos(left);
+                this.process(CosCommand, left);
                 break;
             case "tan":
-                this.tan(left);
+                this.process(TanCommand, left);
                 break;
             case "ee":
-                this.ee(left);
+                this.process(EECommand, left);
                 break;
             case "rad":
-                this.rad(left);
+                this.process(RadCommand, left);
                 break;
             case "sinh":
-                this.sinh(left);
+                this.process(SinhCommand, left);
                 break;
             case "cosh":
-                this.cosh(left);
+                this.process(CoshCommand, left);
                 break;
             case "tanh":
-                this.tanh(left);
+                this.process(TanhCommand, left);
                 break;
             case "e":
-                this.e();
+                this.process(ECommand);
                 break;
             case "pi":
-                this.pi();
+                this.process(PICommand);
                 break;
             case "random":
-                this.random();
+                this.process(RandomCommand);
                 break;
             case "add_memory":
-                this.addMemory(parseFloat(left));
+                this.process(AddMemoryCommand, parseFloat(left));
                 return;
             case "substract_memory":
-                this.substractMemory(parseFloat(left));
+                this.process(SubstractMemoryCommand, parseFloat(left));
                 return;
             case "recall_memory":
-                this.recallMemory();
+                this.process(RecallMemoryCommand);
                 break;
             case "clear_memory":
-                this.clearMemory();
+                this.process(ClearMemoryCommand);
                 return;
             case "undo":
                 this.undo();

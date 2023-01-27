@@ -2,12 +2,22 @@ class OutputDispatcher {
     constructor() {
         this.left = "";
         this.right = "";
+        this.result = null;
         this.operation = "";
 
         this.output = document.getElementById("output");
 
         this.updateLeft = function (value) {
+            if (this.result) {
+                this.clear();
+            }
+
             if (this.left === "0" && value === "0"){
+                return;
+            }
+
+            if (this.left === "0" && value !== ".") {
+                this.left = value;
                 return;
             }
 
@@ -20,6 +30,11 @@ class OutputDispatcher {
 
         this.updateRight = function (value) {
             if (this.right === "0" && value === "0"){
+                return;
+            }
+
+            if (this.right === "0" && value !== ".") {
+                this.right = value;
                 return;
             }
 
@@ -74,13 +89,17 @@ class OutputDispatcher {
             this.left = result.toString();
             this.operation = "";
             this.right = "";
+
+            this.result = result;
+
             this.output.value = result;
         };
 
         this.updateConstantResult = function (result) {
-            if (!this.left && !this.operation) {
+            if (!this.operation) {
                 this.left = result.toString();
                 this.output.value = result;
+                this.result = result;
 
                 return;
             }
@@ -107,6 +126,7 @@ class OutputDispatcher {
         this.clear = function () {
             this.left = "";
             this.right = "";
+            this.result = null;
             this.output.value = "";
         };
 
