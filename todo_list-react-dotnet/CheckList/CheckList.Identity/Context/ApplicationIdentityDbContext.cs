@@ -1,10 +1,9 @@
-﻿using CheckList.DataAccess.Entities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace CheckList.DataAccess.Context
+namespace CheckList.Identity
 {
-    public class ApplicationIdentityDbContext : IdentityDbContext<UserEntity>
+    public class ApplicationIdentityDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationIdentityDbContext(DbContextOptions options) : base(options)
         {
@@ -14,13 +13,7 @@ namespace CheckList.DataAccess.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
             builder.HasDefaultSchema("Identity");
-
-            builder.Entity<UserEntity>(entity =>
-            {
-                entity.ToTable(name: "Users");
-            });
         }
     }
 }

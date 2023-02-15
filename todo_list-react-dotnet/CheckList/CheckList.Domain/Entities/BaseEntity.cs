@@ -1,4 +1,4 @@
-﻿namespace CheckList.DataAccess.Entities;
+﻿namespace CheckList.Domain;
 
 public abstract class BaseEntity<T> where T : struct
 {
