@@ -25,6 +25,7 @@ public class ErrorHandlerMiddleware
 
             response.StatusCode = ex switch
             {
+                ApplicationException => (int)HttpStatusCode.BadRequest,
                 UnauthorizedAccessException => (int)HttpStatusCode.Unauthorized,
                 _ => (int)HttpStatusCode.InternalServerError,
             };

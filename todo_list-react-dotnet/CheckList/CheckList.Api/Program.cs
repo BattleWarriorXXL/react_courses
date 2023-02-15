@@ -1,3 +1,4 @@
+using CheckList.Application;
 using CheckList.Domain;
 using CheckList.Infrastructure;
 using Identity.Api;
@@ -12,6 +13,8 @@ var services = builder.Services;
 var configuration = builder.Configuration;
 
 services.AddControllers();
+
+services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -87,6 +90,9 @@ services.AddCors(options =>
                    .AllowAnyMethod();
         });
 });
+
+services.AddScoped<ITaskRepository, TaskRepository>();
+services.AddScoped<ITaskService, TaskService>();
 
 var app = builder.Build();
 

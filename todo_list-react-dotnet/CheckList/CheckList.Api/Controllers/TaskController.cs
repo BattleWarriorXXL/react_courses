@@ -1,47 +1,63 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using CheckList.Domain;
+using CheckList.Shared;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CheckList.Api.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("api/tasks")]
+[Route("api/users/{userId}/tasks")]
 public class TaskController : ControllerBase
 {
+    private readonly ITaskService _taskService;
     private readonly ILogger<TaskController> _logger;
 
-    public TaskController(ILogger<TaskController> logger)
+    public TaskController(ITaskService taskService, ILogger<TaskController> logger)
     {
+        _taskService = taskService;
         _logger = logger;
     }
 
     [HttpPost("create")]
-    public IActionResult Create()
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> Create(string userId, TaskDto taskDto)
     {
-        return Ok("created");
+        taskDto.UserId = userId;
+
+        var taskId = await _taskService.CreateAsync(taskDto);
+        return Ok(taskId);
     }
 
     [HttpGet("{id}")]
-    public IActionResult Get(Guid id)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> Get(string userId, Guid id)
     {
-        return Ok($"got : {id}");
+        var task = await _taskService.GetByIdAsync(id);
+        return Ok(task);
     }
 
     [HttpGet("get-all")]
-    public IActionResult GetAll()
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAll(string userId)
     {
-        return Ok("got all");
+        var tasks = await _taskService.GetAllByUserIdAsync(userId);
+        return Ok(tasks);
     }
 
     [HttpPut("update/{id}")]
-    public IActionResult Update(int id)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> Update(string userId, TaskDto taskDto)
     {
-        return Ok($"updated: {id}");
+        var updatedTask = await _taskService.UpdateAsync(taskDto.Id, taskDto);
+        return Ok(updatedTask);
     }
 
     [HttpDelete("delete/{id}")]
-    public IActionResult Delete(Guid id)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> Delete(string userId, Guid id)
     {
-        return Ok($"deleted: {id}");
+        var deletedTaskId = await _taskService.DeleteAsync(id);
+        return Ok(deletedTaskId);
     }
 }

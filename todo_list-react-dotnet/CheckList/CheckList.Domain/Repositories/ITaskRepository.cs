@@ -1,6 +1,6 @@
 ﻿namespace CheckList.Domain;
 
-public interface ITaskRepository : IBaseRepository<Guid, TaskEntity>
+public interface ITaskRepository : IRepository<Guid, TaskEntity>
 {
 
 }

@@ -1,32 +1,55 @@
 ﻿using CheckList.Domain;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace CheckList.Infrastructure;
 
 public class TaskRepository : ITaskRepository
 {
-    public Task<Guid> CreateAsync(TaskEntity entity)
+    private readonly ApplicationDbContext _context;
+
+    public TaskRepository(ApplicationDbContext context)
     {
-        throw new NotImplementedException();
+        _context = context;
     }
 
-    public Task<TaskEntity?> GetByIdAsync(Guid id)
+    public async Task<Guid> CreateAsync(TaskEntity entity)
     {
-        throw new NotImplementedException();
+        await _context.Tasks.AddAsync(entity);
+        await _context.SaveChangesAsync();
+
+        return entity.Id;
     }
 
-    public Task<IEnumerable<TaskEntity>> GetAllAsync(Expression<Func<TaskEntity, bool>>? predicate = null)
+    public async Task<TaskEntity?> GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var task = await _context.Tasks.FirstOrDefaultAsync(t => t.Id == id);
+        return task;
     }
 
-    public Task<TaskEntity> UpdatedAsync(TaskEntity entity)
+    public async Task<IEnumerable<TaskEntity>> GetAllAsync(Expression<Func<TaskEntity, bool>>? predicate = null)
     {
-        throw new NotImplementedException();
+        if (predicate != null)
+        {
+            return await _context.Tasks.Where(predicate).ToListAsync();
+        }
+        
+        return await _context.Tasks.ToListAsync();
     }
 
-    public Task<Guid> DeleteAsync(TaskEntity entity)
+    public async Task<TaskEntity> UpdatedAsync(TaskEntity entity)
     {
-        throw new NotImplementedException();
+        _context.Tasks.Update(entity);
+        await _context.SaveChangesAsync();
+
+        return entity;
+    }
+
+    public async Task<Guid> DeleteAsync(TaskEntity entity)
+    {
+        _context.Tasks.Remove(entity);
+        await _context.SaveChangesAsync();
+
+        return entity.Id;
     }
 }

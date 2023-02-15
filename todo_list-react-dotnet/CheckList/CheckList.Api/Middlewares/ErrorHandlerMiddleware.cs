@@ -25,6 +25,7 @@ public class ErrorHandlerMiddleware
 
             response.StatusCode = ex switch
             {
+                ApplicationException => (int)HttpStatusCode.BadRequest,
                 _ => (int)HttpStatusCode.InternalServerError,
             };
 

@@ -2,7 +2,7 @@
 
 namespace CheckList.Domain;
 
-public interface IBaseRepository<TId, T> where TId : struct
+public interface IRepository<TId, T> where TId : struct
                                          where T : class
 {
     Task<TId> CreateAsync(T entity);
