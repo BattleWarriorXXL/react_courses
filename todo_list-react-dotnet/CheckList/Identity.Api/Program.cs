@@ -1,6 +1,8 @@
 using CheckList.Application;
 using CheckList.Domain;
 using CheckList.Infrastructure;
+using Identity.Api;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,6 +37,7 @@ services.AddHttpClient("Identity Server", httpClient =>
 });
 
 services.AddTransient<IIdentityService, IdentityService>();
+services.AddScoped<IClaimsService, ClaimsService>();
 
 var app = builder.Build();
 
