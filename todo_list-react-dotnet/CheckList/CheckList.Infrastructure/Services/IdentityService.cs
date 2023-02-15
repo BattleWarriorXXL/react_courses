@@ -35,12 +35,12 @@ public class IdentityService : IIdentityService
         var user = await _userManager.FindByNameAsync(email);
         if (user == null)
         {
-            throw new UnauthorizedAccessException("Cannot find user by this email.");
+            throw new WrongCredentialsException("Cannot find user by this email.");
         }
 
         var identityResult = await _signInManager.PasswordSignInAsync(email, password, false, false);
         if (!identityResult.Succeeded) { 
-            throw new UnauthorizedAccessException("Wrong credentials.");
+            throw new WrongCredentialsException("Email or password is incorrect.");
         }
 
         var accessToken = await RequestTokenAsync(email, password);

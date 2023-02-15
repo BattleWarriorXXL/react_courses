@@ -1,5 +1,6 @@
 using CheckList.Domain;
 using CheckList.Infrastructure;
+using Identity.Api;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -102,6 +103,8 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     db.Database.Migrate();
 }
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.MapControllers();
 

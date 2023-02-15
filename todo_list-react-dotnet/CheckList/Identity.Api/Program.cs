@@ -48,6 +48,8 @@ app.UseAuthorization();
 
 app.UseIdentityServer();
 
+app.UseMiddleware<ErrorHandlerMiddleware>();
+
 app.MapControllers();
 
 app.Run();
