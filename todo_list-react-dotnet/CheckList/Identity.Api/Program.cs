@@ -1,3 +1,4 @@
+using CheckList.Application;
 using CheckList.Domain;
 using CheckList.Infrastructure;
 using Microsoft.AspNetCore.Identity;
@@ -30,21 +31,20 @@ services.AddSwaggerGen();
 
 services.AddHttpClient("Identity Server", httpClient =>
 {
-    httpClient.BaseAddress = new Uri("http://localhost:3002");
+    httpClient.BaseAddress = new Uri(configuration["ApplicationSettings:BaseAddress"]!);
 });
+
+services.AddTransient<IIdentityService, IdentityService>();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseAuthorization();
 
-app.MapControllers();
-
 app.UseIdentityServer();
+
+app.MapControllers();
 
 app.Run();

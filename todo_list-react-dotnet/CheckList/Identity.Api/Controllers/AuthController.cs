@@ -23,6 +23,8 @@ public class AuthController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> SignIn(SignUpDto signUpDto)
     {
+        _logger.LogInformation("Attempt to sign in...");
+
         var token = await _identityService.SignInAsync(signUpDto.Email, signUpDto.Password);
         return Ok(token);
     }
@@ -31,6 +33,8 @@ public class AuthController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> SignUp(SignUpDto signUpDto)
     {
+        _logger.LogInformation("Attempt to sign up...");
+
         var token = await _identityService.SignUpAsync(signUpDto.Email, signUpDto.Password);
         return Ok(token);
     }

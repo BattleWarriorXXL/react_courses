@@ -89,6 +89,11 @@ public class IdentityService : IIdentityService
             Password = password
         });
 
+        if (tokenResponse.IsError)
+        {
+            throw new UnauthorizedAccessException(tokenResponse.ErrorDescription);
+        }
+
         return tokenResponse.AccessToken;
     }
 }

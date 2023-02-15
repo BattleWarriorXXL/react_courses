@@ -3,6 +3,7 @@ using CheckList.Infrastructure;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,13 +21,20 @@ services.AddIdentity<UserEntity, IdentityRole>()
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
 
-services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-        .AddIdentityServerAuthentication(options =>
-        {
-            options.Authority = "http://localhost:3000";
-            options.ApiName = "check-list-api";
-            options.RequireHttpsMetadata = false;
-        });
+services.AddAuthentication(options => {
+    options.DefaultAuthenticateScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
+}).AddJwtBearer("Bearer", options =>
+{
+    options.Authority = "http://localhost:3002";
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateAudience = false
+    };
+
+    options.RequireHttpsMetadata = false;
+});
 
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen(c =>
@@ -83,20 +91,18 @@ var app = builder.Build();
 
 app.UseCors();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
-
 app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "CheckList.Api");
-});
+app.UseSwaggerUI();
 
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     db.Database.Migrate();
 }
+
+app.MapControllers();
 
 app.Run();
