@@ -4,8 +4,8 @@ import "./Footer.css";
 
 function Footer() {
     return (
-        <footer>
-            Footer
+        <footer className="Footer-container">
+            <p>Copyright © {new Date().getFullYear()}</p>
         </footer>
     );
 }

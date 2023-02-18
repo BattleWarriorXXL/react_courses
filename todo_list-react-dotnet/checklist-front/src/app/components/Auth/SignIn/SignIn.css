@@ -1,0 +1,7 @@
+.SignIn-form-container {
+    height: 400px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

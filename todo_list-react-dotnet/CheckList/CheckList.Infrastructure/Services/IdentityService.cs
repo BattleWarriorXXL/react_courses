@@ -47,6 +47,7 @@ public class IdentityService : IIdentityService
         return new TokenModel
         {
             UserId = user.Id,
+            UserEmail = user.Email!,
             AccessToken = accessToken,
         };
     }
@@ -62,7 +63,7 @@ public class IdentityService : IIdentityService
         var identityResult = await _userManager.CreateAsync(user, password);
         if (!identityResult.Succeeded)
         {
-            throw new UnauthorizedAccessException(identityResult.Errors.First().Description);
+            throw new WrongCredentialsException(identityResult.Errors.First().Description);
         }
 
         var accessToken = await RequestTokenAsync(email, password);
@@ -70,6 +71,7 @@ public class IdentityService : IIdentityService
         return new TokenModel
         {
             UserId = user.Id,
+            UserEmail = user.Email!,
             AccessToken = accessToken
         };
     }
@@ -91,7 +93,7 @@ public class IdentityService : IIdentityService
 
         if (tokenResponse.IsError)
         {
-            throw new UnauthorizedAccessException(tokenResponse.ErrorDescription);
+            throw new WrongCredentialsException(tokenResponse.ErrorDescription);
         }
 
         return tokenResponse.AccessToken;

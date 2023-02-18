@@ -36,10 +36,23 @@ services.AddHttpClient("Identity Server", httpClient =>
     httpClient.BaseAddress = new Uri(configuration["ApplicationSettings:BaseAddress"]!);
 });
 
+services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
 services.AddTransient<IIdentityService, IdentityService>();
 services.AddScoped<IClaimsService, ClaimsService>();
 
 var app = builder.Build();
+
+app.UseCors();
 
 app.UseSwagger();
 app.UseSwaggerUI();

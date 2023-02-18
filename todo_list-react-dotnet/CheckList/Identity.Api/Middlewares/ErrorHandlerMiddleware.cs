@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using CheckList.Shared;
+using System.Net;
 using System.Text.Json;
 
 namespace Identity.Api;
@@ -26,7 +27,7 @@ public class ErrorHandlerMiddleware
             response.StatusCode = ex switch
             {
                 ApplicationException => (int)HttpStatusCode.BadRequest,
-                UnauthorizedAccessException => (int)HttpStatusCode.Unauthorized,
+                WrongCredentialsException => (int)HttpStatusCode.Unauthorized,
                 _ => (int)HttpStatusCode.InternalServerError,
             };
 
