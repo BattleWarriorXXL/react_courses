@@ -1,0 +1,33 @@
+.Navigation-container {
+    position: fixed;
+    top: 80px;
+    bottom: 40px;
+    left: 0;
+    height: calc(100% - 80px - 40px);
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-right: 1px solid #dadce0;
+    z-index: 300;
+}
+
+.Navigation-container a {
+    display: flex;
+    margin-left: 25px;
+    flex-direction: row;
+    align-items: center;
+    color: #000000;
+}
+
+.Navigation-container a:first-child {
+    margin-top: 20px;
+}
+
+.Navigation-container a:not(:first-child) {
+    padding-top: 20px;
+}
+
+.Navigation-container span {
+    padding-left: 10px;
+}

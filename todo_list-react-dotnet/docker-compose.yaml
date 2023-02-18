@@ -1,0 +1,30 @@
+services:
+  web-api:
+    container_name: web-api
+    build:
+      dockerfile: CheckList/CheckList.Api/Dockerfile
+    ports:
+      - "3001:80"
+
+  identity-api:
+    container_name: identity-api
+    build:
+      dockerfile: CheckList/Identity.Api/Dockerfile
+    ports:
+      - "3002:80"
+
+  client-react:
+    container_name: web-client
+    build:
+      dockerfile: checklist-front/Dockerfile
+    ports:
+      - "3000:80"
+
+  sql-server-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: DESKTOP-M6O7NJ4
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "SomeSecretPassword12345"

@@ -1,0 +1,26 @@
+.Header-container {
+    position: fixed;
+    top: 0;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 30px;
+    border-bottom: 1px solid #dadce0;
+    z-index: 300;
+}
+
+.Header-container a {
+    text-decoration: none;
+}
+
+.Header-profile_section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.Header-profile_section *:not(:first-child) {
+    margin-left: 10px;
+}
