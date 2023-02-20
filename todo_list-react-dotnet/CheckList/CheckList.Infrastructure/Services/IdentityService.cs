@@ -39,7 +39,8 @@ public class IdentityService : IIdentityService
         }
 
         var identityResult = await _signInManager.PasswordSignInAsync(email, password, false, false);
-        if (!identityResult.Succeeded) { 
+        if (!identityResult.Succeeded) {
+            _logger.LogError("Email or password is incorrect.");
             throw new WrongCredentialsException("Email or password is incorrect.");
         }
 
@@ -63,6 +64,7 @@ public class IdentityService : IIdentityService
         var identityResult = await _userManager.CreateAsync(user, password);
         if (!identityResult.Succeeded)
         {
+            _logger.LogError(identityResult.Errors.First().Description);
             throw new WrongCredentialsException(identityResult.Errors.First().Description);
         }
 
@@ -79,7 +81,10 @@ public class IdentityService : IIdentityService
     private async Task<string> RequestTokenAsync(string email,string password)
     {
         var httpClient = _httpClientFactory.CreateClient("Identity Server");
-        var discovery = await httpClient.GetDiscoveryDocumentAsync();
+        var discovery = await httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
+        {
+            Policy = { RequireHttps = false }
+        });
 
         var tokenResponse = await httpClient.RequestPasswordTokenAsync(new PasswordTokenRequest
         {
@@ -93,6 +98,7 @@ public class IdentityService : IIdentityService
 
         if (tokenResponse.IsError)
         {
+            _logger.LogError(tokenResponse.ErrorDescription);
             throw new WrongCredentialsException(tokenResponse.ErrorDescription);
         }
 

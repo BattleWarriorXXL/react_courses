@@ -1,7 +1,8 @@
 import axios, { HttpStatusCode } from "axios";
 
 const taskApi = axios({
-    baseURL: "http://localhost:3001/api"
+    // eslint-disable-next-line no-undef
+    baseURL: process.env.REACT_APP_API_BASE_URL
 });
 
 const createTask = async (task) => {

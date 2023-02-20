@@ -9,10 +9,10 @@ import Navigation from "./app/components/Navigation/Navigation";
 import "./App.css";
 import AuthProvider from "./app/providers/auth.provider";
 
-function App() {
 
+function App() {
     return (
-        <Router>
+        <Router>            
             <AuthProvider>
                 <Header />
                 <Navigation>

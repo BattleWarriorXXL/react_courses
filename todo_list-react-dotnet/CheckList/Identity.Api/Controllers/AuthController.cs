@@ -21,11 +21,11 @@ public class AuthController : ControllerBase
 
     [HttpPost("signin")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IActionResult> SignIn(SignUpDto signUpDto)
+    public async Task<IActionResult> SignIn(SignInDto signInDto)
     {
         _logger.LogInformation("Attempt to sign in...");
 
-        var token = await _identityService.SignInAsync(signUpDto.Email, signUpDto.Password);
+        var token = await _identityService.SignInAsync(signInDto.Email, signInDto.Password);
         return Ok(token);
     }
 
