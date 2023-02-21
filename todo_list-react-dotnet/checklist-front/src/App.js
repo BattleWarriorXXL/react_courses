@@ -8,7 +8,7 @@ import Navigation from "./app/components/Navigation/Navigation";
 
 import "./App.css";
 import AuthProvider from "./app/providers/auth.provider";
-
+import Calendar from "./app/components/Calendar/Calendar";
 
 function App() {
     return (
@@ -22,7 +22,7 @@ function App() {
                 <main className="App-main-container">
                     <Routes>
                         <Route path="/tasks" element={<div>tasks</div>} />
-                        <Route path="/calendar" element={<div>calendar</div>} />
+                        <Route path="/calendar" element={<Calendar />} />
                         <Route path="*" element={<Navigate replace to="/calendar" />} />
                     </Routes>
                 </main>

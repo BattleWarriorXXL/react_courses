@@ -1,0 +1,101 @@
+.Calendar-container {
+    height: calc(100vh - 80px - 40px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+}
+
+.Calendar-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Calendar-header_arrow:hover {
+    cursor: pointer;
+}
+
+.Calendar-header_week-days {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-left: 1px solid var(--gray);
+    border-top: 1px solid var(--gray);
+    border-bottom: 1px solid var(--gray);
+    color: var(--white);
+    background-color: var(--teal);
+}
+
+.Calendar-week-day {
+    height: 100%;
+    width: 100%;
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--gray);
+}
+
+.Calendar-header_control {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Calendar-body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--gray);
+}
+
+.Calendar-week {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.Calendar-day-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--gray);
+    border-bottom: 1px solid var(--gray);
+    background-color: var(--light);
+    opacity: 0.9;
+}
+
+.Calendar-day-container:hover {
+    cursor: pointer;
+    color: var(--white);
+    background-color: var(--cyan);
+}
+
+.Calendar-day_header {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Calendar-day_header__today {
+    color: var(--white);
+    background-color: var(--orange);
+}
+
+.Calendar-day_content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    padding: 5px;
+}
