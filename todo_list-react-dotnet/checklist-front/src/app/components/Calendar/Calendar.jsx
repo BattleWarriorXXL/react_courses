@@ -76,7 +76,7 @@ function Calendar() {
             <div className="Calendar-header">
                 <div className="Calendar-header_control">
                     <AiOutlineArrowLeft size={28} className="Calendar-header_arrow" onClick={onPreviewMonthClick} />
-                    {date.format("MMMM")} - {date.format("YYYY")}
+                    <h3 className="prevent-select">{date.format("MMMM")} - {date.format("YYYY")}</h3>
                     <AiOutlineArrowRight size={28} className="Calendar-header_arrow" onClick={onNextMonthClick} />
                 </div>
                 <div className="Calendar-header_week-days">
