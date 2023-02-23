@@ -1,0 +1,94 @@
+.TaskList-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.TaskList-actions {
+    display: flex;
+    align-items: center;
+}
+
+.TaskList-action {
+    display: flex;
+    align-items: center;
+}
+
+.TaskList-action:hover {
+    cursor: pointer;
+}
+
+.TaskList-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+    border-top: 1px solid var(--gray);
+    border-left: 1px solid var(--gray);
+    border-bottom: 1px solid var(--gray);
+}
+
+.TaskList-list-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 5px 25px;
+    border-right: 1px solid var(--gray);
+}
+
+.TaskList-list-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.TaskList-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.TaskList-list .TaskList-task:not(:first-child) {
+    margin-top: 5px;
+}
+
+.TaskList-task {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: var(--yellow);
+}
+
+.TaskList-task__completed {
+    color: var(--white);
+    background-color: var(--teal);
+}
+
+.TaskList-task_info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.TaskList-task_actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.TaskList-task_actions *:not(:first-child) {
+    margin-left: 15px;
+}
+
+.TaskList-task_actions *:hover {
+    cursor: pointer;
+}

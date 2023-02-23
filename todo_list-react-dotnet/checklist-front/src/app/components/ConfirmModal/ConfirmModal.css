@@ -1,0 +1,9 @@
+.ConfirmModal-container {
+    width: 400px;
+    display: flex;
+    align-items: center;
+}
+
+.ConfirmModal-container button {
+    margin: 5px;
+}

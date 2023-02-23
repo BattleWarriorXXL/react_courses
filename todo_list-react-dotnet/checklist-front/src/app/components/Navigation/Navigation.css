@@ -9,6 +9,7 @@
     flex-direction: column;
     overflow-y: auto;
     border-right: 1px solid #dadce0;
+    background-color: var(--white);
     z-index: 300;
 }
 

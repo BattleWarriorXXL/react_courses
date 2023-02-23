@@ -1,6 +1,8 @@
 import moment from "moment/moment";
 import React, { useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import Modal from "../Modal/Modal";
+import ShortTask from "../Task/ShortTask/ShortTask";
 import "./Calendar.css";
 
 const weekDays = moment.weekdays();
@@ -9,6 +11,8 @@ const weeksInCalendar = 6;
 
 function Calendar() {
     const [date, setDate] = useState(moment());
+    const [showTaskModal, setShowTaskModal] = useState(false);
+    const [selectedDay, setSelectedDay] = useState(null);
 
     const getPreviousMonthCalendarDays = () => {
         const previousMonth = moment(date).subtract(1, "month");
@@ -60,7 +64,8 @@ function Calendar() {
     };
 
     const onDayClick = (day) => {
-        console.log(day.format("YYYY_MM_DD"));
+        setSelectedDay(day);
+        setShowTaskModal(true);
     };
 
     const onPreviewMonthClick = () => {
@@ -72,46 +77,51 @@ function Calendar() {
     };
 
     return (
-        <div className="Calendar-container">
-            <div className="Calendar-header">
-                <div className="Calendar-header_control">
-                    <AiOutlineArrowLeft size={28} className="Calendar-header_arrow" onClick={onPreviewMonthClick} />
-                    <h3 className="prevent-select">{date.format("MMMM")} - {date.format("YYYY")}</h3>
-                    <AiOutlineArrowRight size={28} className="Calendar-header_arrow" onClick={onNextMonthClick} />
+        <>
+            <div className="Calendar-container">
+                <div className="Calendar-header">
+                    <div className="Calendar-header_control">
+                        <AiOutlineArrowLeft size={28} className="Calendar-header_arrow" onClick={onPreviewMonthClick} />
+                        <h3 className="prevent-select">{date.format("MMMM")} - {date.format("YYYY")}</h3>
+                        <AiOutlineArrowRight size={28} className="Calendar-header_arrow" onClick={onNextMonthClick} />
+                    </div>
+                    <div className="Calendar-header_week-days">
+                        {weekDays.map(day => {
+                            return (
+                                <div key={day} className="Calendar-week-day">
+                                    {day}
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
-                <div className="Calendar-header_week-days">
-                    {weekDays.map(day => {
+                <div className="Calendar-body">
+                    {getCalendarWeeks().map((week, i) => {
                         return (
-                            <div key={day} className="Calendar-week-day">
-                                {day}
+                            <div key={`week_${i}`} className="Calendar-week">
+                                {week.map((day, j) => {
+                                    return (
+                                        <div key={`week_${i}_day_${j}`} className="Calendar-day-container" onClick={() => onDayClick(day)}>
+                                            <div className={day.format("DD-MM-YYYY") === moment().format("DD-MM-YYYY")
+                                                ? "Calendar-day_header Calendar-day_header__today"
+                                                : "Calendar-day_header"}>
+                                                {day.format("D")}
+                                            </div>
+                                            <div className="Calendar-day_content">
+                                                <ShortTask />
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         );
                     })}
                 </div>
             </div>
-            <div className="Calendar-body">
-                {getCalendarWeeks().map((week, i) => {
-                    return (
-                        <div key={`week_${i}`} className="Calendar-week">
-                            {week.map((day, j) => {
-                                return (
-                                    <div key={`week_${i}_day_${j}`} className="Calendar-day-container" onClick={() => onDayClick(day)}>
-                                        <div className={day.format("DD-MM-YYYY") === moment().format("DD-MM-YYYY")
-                                            ? "Calendar-day_header Calendar-day_header__today"
-                                            : "Calendar-day_header"}>
-                                            {day.format("D")}
-                                        </div>
-                                        <div className="Calendar-day_content">
-                                            Content
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    );
-                })}
-            </div>
-        </div>
+            <Modal show={showTaskModal} onClose={() => setShowTaskModal(false)}>
+                {selectedDay?.format("YYYY-MM-DD")}
+            </Modal>
+        </>
     );
 }
 

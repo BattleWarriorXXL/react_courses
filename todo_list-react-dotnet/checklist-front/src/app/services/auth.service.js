@@ -45,12 +45,18 @@ const isAuthenticated = () => {
     return getCurrentUser() ? true : false;
 };
 
+const getAccessToken = () => {
+    const currentUser = getCurrentUser();
+    return currentUser?.accessToken;
+};
+
 const AuthService = {
     signIn,
     signUp,
     signOut,
     isAuthenticated,
-    getCurrentUser
+    getCurrentUser,
+    getAccessToken
 };
 
 export default AuthService;

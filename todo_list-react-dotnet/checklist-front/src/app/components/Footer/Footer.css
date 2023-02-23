@@ -7,5 +7,6 @@
     align-items: center;
     justify-content: center;
     border-top: 1px solid #dadce0;
+    background-color: var(--white);
     z-index: 300;
 }

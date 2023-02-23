@@ -1,0 +1,14 @@
+.TaskDetail-form-container {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.TaskDetail-form-container .button:not(:first-child) {
+    margin-top: 15px
+}
+
+.TaskDetail-form-container div:not(:first-child) {
+    margin-top: 15px
+}

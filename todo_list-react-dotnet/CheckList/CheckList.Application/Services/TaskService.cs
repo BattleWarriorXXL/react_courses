@@ -58,7 +58,7 @@ public class TaskService : ITaskService
         var taskEntity = _mapper.Map<TaskEntity>(model);
         taskEntity.UpdatedDate = DateTime.UtcNow;
 
-        var updatedTaskEntity = await _taskRepository.UpdatedAsync(taskEntity);
+        var updatedTaskEntity = await _taskRepository.UpdateAsync(taskEntity);
 
         return _mapper.Map<TaskDto>(updatedTaskEntity);
     }
@@ -76,7 +76,7 @@ public class TaskService : ITaskService
         return id;
     }
 
-    public async Task<Guid> CreateAsync(string userId, TaskDto taskDto)
+    public async Task<TaskDto> CreateAsync(string userId, TaskDto taskDto)
     {
         taskDto.UserId = userId;
 
@@ -84,8 +84,8 @@ public class TaskService : ITaskService
         taskEntity.CreatedDate = DateTime.UtcNow;
         taskEntity.UpdatedDate = DateTime.UtcNow;
 
-        var taskId = await _taskRepository.CreateAsync(taskEntity);
-        return taskId;
+        await _taskRepository.CreateAsync(taskEntity);
+        return _mapper.Map<TaskDto>(taskEntity);
     }
 
     public async Task<TaskDto> GetByIdAsync(string userId, Guid taskId)
@@ -102,12 +102,19 @@ public class TaskService : ITaskService
 
     public async Task<TaskDto> UpdateAsync(string userId, Guid taskId, TaskDto taskDto)
     {
-        await GetByIdAsync(userId, taskId);
+        var taskEntity = await _taskRepository.GetByIdAsync(taskId);
+        if (taskEntity == null)
+        {
+            throw new NotFoundException($"Task with {taskId} doesn't exist.");
+        }
 
-        var taskEntity = _mapper.Map<TaskEntity>(taskDto);
         taskEntity.UpdatedDate = DateTime.UtcNow;
+        taskEntity.Title = taskDto.Title;
+        taskEntity.Description = taskDto.Description;
+        taskEntity.Date = taskDto.Date;
+        taskEntity.IsCompleted = taskDto.IsCompleted;
 
-        var updatedTaskEntity = await _taskRepository.UpdatedAsync(taskEntity);
+        var updatedTaskEntity = await _taskRepository.UpdateAsync(taskEntity);
 
         return _mapper.Map<TaskDto>(updatedTaskEntity);
     }
