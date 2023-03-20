@@ -48,9 +48,7 @@ function TaskList() {
     };
 
     const sortTasks = (tasks) => {
-        return tasks
-            .sort((a, b) => moment(a.date).isAfter(moment(b.date)))
-            .sort((a, b) => (a.isCompleted === b.isCompleted) ? 0 : !a.isCompleted ? -1 : 1);
+        return TaskService.sortTasks(tasks);
     };
 
     const onTaskCreate = () => {
@@ -95,13 +93,13 @@ function TaskList() {
 
     const onTaskCreated = (createdTask) => {
         tasks.push(createdTask);
-        setTasks(tasks);
+        setTasks(sortTasks(tasks));
         setShowCreateTaskModal(false);
     };
 
     const onTaskUpdated = (updatedTask) => {
         tasks[tasks.findIndex(t => t.id === updatedTask.id)] = updatedTask;
-        setTasks(tasks);
+        setTasks(sortTasks(tasks));
         setShowTaskDetailModal(false);
     };
 
@@ -134,7 +132,6 @@ function TaskList() {
             <div className="TaskList-actions">
                 <div className="TaskList-action" onClick={onTaskCreate}>
                     <AiOutlinePlus size={28} onClick={onTaskCreate} />
-                    <h4>Create new</h4>
                 </div>
             </div>
             <div className="TaskList-content">

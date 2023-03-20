@@ -1,4 +1,6 @@
 import axios, { HttpStatusCode } from "axios";
+import moment from "moment";
+
 import AuthService from "./auth.service";
 
 const taskApi = axios.create({
@@ -7,11 +9,16 @@ const taskApi = axios.create({
 });
 
 const getAuthorizationHeader = () => {
-    return { headers: { "Authorization": `Bearer ${AuthService.getAccessToken()}` } };
+    return {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${AuthService.getAccessToken()}`
+        }
+    };
 };
 
 const createTask = async (userId, task) => {
-    let url = `users/${userId}/tasks/create`;
+    const url = `users/${userId}/tasks/create`;
     const response = await taskApi.post(url, task, getAuthorizationHeader());
     if (response.status != HttpStatusCode.Ok) {
         throw new Error(response.data.message);
@@ -37,11 +44,12 @@ const getAllTasks = async (userId) => {
         throw new Error(response.data.message);
     }
 
-    return response.data;
+    return sortTasks(response.data);
 };
 
 const updateTask = async (userId, taskId, task) => {
     const url = `users/${userId}/tasks/${taskId}`;
+
     const response = await taskApi.put(url, task, getAuthorizationHeader());
     if (response.status != HttpStatusCode.Ok) {
         throw new Error(response.data.message);
@@ -74,6 +82,12 @@ const cancelTask = async (userId, task) => {
     return data;
 };
 
+const sortTasks = (tasks) => {
+    return tasks
+        .sort((a, b) => moment(a.date).isAfter(moment(b.date)))
+        .sort((a, b) => (a.isCompleted === b.isCompleted) ? 0 : !a.isCompleted ? -1 : 1);
+};
+
 
 const TaskService = {
     createTask,
@@ -82,7 +96,8 @@ const TaskService = {
     updateTask,
     deleteTask,
     completeTask,
-    cancelTask
+    cancelTask,
+    sortTasks
 };
 
 export default TaskService;

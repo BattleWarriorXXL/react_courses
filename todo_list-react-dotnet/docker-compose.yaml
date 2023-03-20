@@ -4,6 +4,7 @@ networks:
 
 services:
   web-api:
+    image: battlewarriorxxl/web_api
     container_name: web-api
     build:
       dockerfile: CheckList/CheckList.Api/Dockerfile
@@ -17,6 +18,7 @@ services:
       ConnectionStrings__CheckListDbConntection: Server=sql-server;Database=CheckList;User Id=SA;Password=SomeSecretPassword12345;MultipleActiveResultSets=true;Trust Server Certificate=true
 
   identity-api:
+    image: battlewarriorxxl/identity_api
     container_name: identity-api
     build:
       dockerfile: CheckList/Identity.Api/Dockerfile
@@ -30,6 +32,7 @@ services:
       ConnectionStrings__CheckListDbConntection: Server=sql-server;Database=CheckList;User Id=SA;Password=SomeSecretPassword12345;MultipleActiveResultSets=true;Trust Server Certificate=true
 
   client-react:
+    image: battlewarriorxxl/react_client
     container_name: web-client
     build:
       dockerfile: checklist-front/Dockerfile

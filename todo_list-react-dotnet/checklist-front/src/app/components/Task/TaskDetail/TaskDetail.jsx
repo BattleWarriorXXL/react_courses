@@ -5,15 +5,13 @@ import TaskService from "../../../services/task.service";
 
 import "./TaskDetail.css";
 
-function TaskDetail({ task, onTaskUpdated }) {
+function TaskDetail({ task, onTaskCompleted, onTaskCancelled, onTaskUpdated, onTaskDeleted, isAllowedToChangeStatus, isAllowedToDelete }) {
     const { userId } = useContext(AuthContext);
     const [title, setTitle] = useState(task.title);
     const [description, setDescription] = useState(task.description);
     const [date, setDate] = useState(task.date);
 
-    const onSubmitUpdateTask = async (e) => {
-        e.preventDefault();
-
+    const onUpdateTask = async () => {
         const updatedTask = await TaskService.updateTask(userId, task.id, {
             title,
             description,
@@ -23,8 +21,25 @@ function TaskDetail({ task, onTaskUpdated }) {
         onTaskUpdated(updatedTask);
     };
 
+    const onDeleteTask = async () => {
+        await TaskService.deleteTask(userId, task.id);
+        onTaskDeleted(task);
+    };
+
+    const onCompleteTask = async () => {
+        // eslint-disable-next-line no-debugger
+        debugger;
+        const completedTask = await TaskService.completeTask(userId, task);
+        onTaskCompleted(completedTask);
+    };
+
+    const onCancelTask = async () => {
+        const canceledTask = await TaskService.cancelTask(userId, task);
+        onTaskCancelled(canceledTask);
+    };
+
     return (
-        <form className="TaskDetail-form-container" onSubmit={onSubmitUpdateTask}>
+        <form className="TaskDetail-form-container" onSubmit={(e) => e.preventDefault()}>
             <div>
                 <label htmlFor="title"><b>Title</b></label>
                 <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Enter Title" name="title" required />
@@ -38,7 +53,18 @@ function TaskDetail({ task, onTaskUpdated }) {
                 <input type="date" value={moment(date).format("YYYY-MM-DD")} onChange={e => setDate(e.target.value)} placeholder="Enter Title" name="date" />
             </div>
 
-            <button type="submit" className="button button-success">Update</button>
+            {isAllowedToChangeStatus && (
+                !task.isCompleted
+                    ? <button className="button button-info" onClick={onCompleteTask}>Complete Task</button>
+                    : <button className="button button-warning" onClick={onCancelTask}>Cancel Task</button>
+            )}
+            
+            {!task.isCompleted && (
+                <button className="button button-success" onClick={onUpdateTask}>Update</button>
+            )}
+
+            {isAllowedToDelete &&
+                <button className="button button-danger" onClick={onDeleteTask}>Delete</button>}
         </form>
     );
 }

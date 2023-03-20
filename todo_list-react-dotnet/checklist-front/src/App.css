@@ -1,6 +1,7 @@
 .App-main-container {
     height: calc(100vh - 80px - 40px);
     width: auto;
+    min-width: 700px;
     margin-top: 80px;
     margin-left: 200px;
 }

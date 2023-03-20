@@ -9,10 +9,21 @@ function Modal({title, show, onClose, children}) {
     const element = document.createElement("div");
 
     useEffect(() => {
+        const handleEscape = (e) => {
+            if (e.keyCode === 27) {
+                onClose();
+            }
+        };
+
+        window.addEventListener("keydown", handleEscape);
+
         modalRoot.appendChild(element);
 
-        return () => modalRoot.removeChild(element);
-    }, [element]);
+        return () => {
+            window.removeEventListener("keydown", handleEscape);
+            modalRoot.removeChild(element);
+        };
+    }, [element, onClose]);
 
     return show && ReactDOM.createPortal((
         <div className="Modal-container" onClick={onClose}>

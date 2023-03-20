@@ -1,3 +1,21 @@
-.ShortTask-container {
+.ShortTask-task {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 5px 5px 5px 10px;
+    border-radius: 15px;
+    background-color: var(--yellow);
+    opacity: 0.8;
+}
 
+.ShortTask-task:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.ShortTask-task__completed {
+    color: var(--white);
+    background-color: var(--teal);
 }

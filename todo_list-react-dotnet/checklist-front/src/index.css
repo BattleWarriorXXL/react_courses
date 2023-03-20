@@ -85,6 +85,10 @@ input:focus {
     color: var(--white);
 }
 
+.button-warning {
+  background-color: var(--warning);
+}
+
 .button-danger {
     background-color: var(--danger);
     color: var(--white);
