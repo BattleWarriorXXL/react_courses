@@ -19,6 +19,7 @@ function SignUp({onAuthTypeChanged}) {
 
         const currentUser = await AuthService.signUp(email, password);
         setCurrentUser(currentUser);
+
         navigate(location.pathname);
     };
 

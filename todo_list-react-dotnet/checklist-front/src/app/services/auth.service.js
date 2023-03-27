@@ -1,16 +1,12 @@
-import axios, { HttpStatusCode } from "axios";
+import axios from "axios";
 
 const authApi = axios.create({
     // eslint-disable-next-line no-undef
-    baseURL: process.env.REACT_APP_IDENTITY_API_BASE_URL,
-    validateStatus: () => true
+    baseURL: process.env.REACT_APP_IDENTITY_API_BASE_URL
 });
 
 const signIn = async (email, password) => {
     const response = await authApi.post("auth/signin", { email, password });
-    if (response.status != HttpStatusCode.Ok) {
-        throw new Error(response.data.message);
-    }
     
     localStorage.setItem("currentUser", JSON.stringify(response.data));
     return response.data;
@@ -18,9 +14,6 @@ const signIn = async (email, password) => {
 
 const signUp = async (email, password) => {
     const response = await authApi.post("auth/signup", { email, password });
-    if (response.status != HttpStatusCode.Ok) {
-        throw new Error(response.data.message);
-    }
 
     localStorage.setItem("currentUser", JSON.stringify(response.data));
     return response.data;
@@ -51,6 +44,7 @@ const getAccessToken = () => {
 };
 
 const AuthService = {
+    authApi,
     signIn,
     signUp,
     signOut,

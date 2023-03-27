@@ -7,6 +7,7 @@ import {
     AiOutlineDelete,
     AiOutlineClose
 } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 import AuthContext from "../../contexts/auth.context";
 import TaskService from "../../services/task.service";
@@ -17,7 +18,7 @@ import TaskDetail from "../Task/TaskDetail/TaskDetail";
 
 import "./TaskList.css";
 
-function TaskList() {
+function TaskList({ onTaskSelected }) {
     const {userId} = useContext(AuthContext);
     const [tasks, setTasks] = useState([]);
     const [selectedTask, setSelectedTask] = useState(null);
@@ -25,7 +26,8 @@ function TaskList() {
     const [showTaskDetailModal, setShowTaskDetailModal] = useState(false);
     const [showCompleteTaskModal, setShowCompleteTaskModal] = useState(false);
     const [showCancelTaskModal, setShowCancelTaskModal] = useState(false);
-    
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchTasks = async () => {
             const data = await TaskService.getAllTasks(userId);
@@ -56,8 +58,8 @@ function TaskList() {
     };
 
     const onTaskDetail = (task) => {
-        setSelectedTask(task);
-        setShowTaskDetailModal(true);
+        onTaskSelected(task);
+        navigate("/tasks/detail");
     };
 
     const onTaskComplete = (task) => {

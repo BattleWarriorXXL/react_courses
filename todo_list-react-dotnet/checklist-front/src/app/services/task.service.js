@@ -90,6 +90,7 @@ const sortTasks = (tasks) => {
 
 
 const TaskService = {
+    taskApi,
     createTask,
     getTask,
     getAllTasks,

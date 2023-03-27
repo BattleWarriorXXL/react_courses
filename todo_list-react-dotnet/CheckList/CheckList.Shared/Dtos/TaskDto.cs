@@ -16,7 +16,7 @@ public record TaskDto
     public string? Description { get; init; }
 
     [DataMember(Name = "dueDate")]
-    public DateTime Date { get; init; }
+    public DateTimeOffset Date { get; init; }
 
     [DataMember(Name = "createdDate")]
     public DateTime CreatedDate { get; init; }
