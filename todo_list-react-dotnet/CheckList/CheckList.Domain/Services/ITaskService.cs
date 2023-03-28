@@ -4,7 +4,7 @@ namespace CheckList.Domain;
 
 public interface ITaskService : IBaseService<Guid, TaskDto>
 {
-    Task<Guid> CreateAsync(string userId, TaskDto taskDto);
+    Task<TaskDto> CreateAsync(string userId, TaskDto taskDto);
 
     Task<TaskDto> GetByIdAsync(string userId, Guid taskId);
 

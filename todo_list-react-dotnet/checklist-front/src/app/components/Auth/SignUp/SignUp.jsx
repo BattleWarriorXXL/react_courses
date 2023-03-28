@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import AuthContext from "../../../contexts/auth.context";
 
 import AuthService from "../../../services/auth.service";
 import AuthType from "../../../utils/auth.types";
@@ -10,12 +11,15 @@ function SignUp({onAuthTypeChanged}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const {setCurrentUser} = useContext(AuthContext);
     const location = useLocation();
 
     const onSubmitSignUp = async (e) => {
         e.preventDefault();
 
-        await AuthService.signUp(email, password);
+        const currentUser = await AuthService.signUp(email, password);
+        setCurrentUser(currentUser);
+
         navigate(location.pathname);
     };
 

@@ -17,7 +17,7 @@ function AuthProvider({children}) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{isAuthenticated: !!currentUser, currentUser, setCurrentUser}}>
+        <AuthContext.Provider value={{isAuthenticated: !!currentUser, userId: currentUser?.userId, currentUser, setCurrentUser}}>
             { currentUser ? children : <AuthForm /> }
         </AuthContext.Provider>
     );

@@ -1,25 +1,19 @@
-import axios, { HttpStatusCode } from "axios";
+import axios from "axios";
 
 const authApi = axios.create({
-    baseURL: "http://localhost:3002/api/auth",
-    validateStatus: () => true
+    // eslint-disable-next-line no-undef
+    baseURL: process.env.REACT_APP_IDENTITY_API_BASE_URL
 });
 
 const signIn = async (email, password) => {
-    const response = await authApi.post("signin", { email, password });
-    if (response.status != HttpStatusCode.Ok) {
-        throw new Error(response.data.message);
-    }
+    const response = await authApi.post("auth/signin", { email, password });
     
     localStorage.setItem("currentUser", JSON.stringify(response.data));
     return response.data;
 };
 
 const signUp = async (email, password) => {
-    const response = await authApi.post("signup", { email, password });
-    if (response.status != HttpStatusCode.Ok) {
-        throw new Error(response.data.message);
-    }
+    const response = await authApi.post("auth/signup", { email, password });
 
     localStorage.setItem("currentUser", JSON.stringify(response.data));
     return response.data;
@@ -44,12 +38,19 @@ const isAuthenticated = () => {
     return getCurrentUser() ? true : false;
 };
 
+const getAccessToken = () => {
+    const currentUser = getCurrentUser();
+    return currentUser?.accessToken;
+};
+
 const AuthService = {
+    authApi,
     signIn,
     signUp,
     signOut,
     isAuthenticated,
-    getCurrentUser
+    getCurrentUser,
+    getAccessToken
 };
 
 export default AuthService;

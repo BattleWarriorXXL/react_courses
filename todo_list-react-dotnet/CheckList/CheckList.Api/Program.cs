@@ -31,7 +31,7 @@ services.AddAuthentication(options => {
     options.DefaultScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
 }).AddJwtBearer("Bearer", options =>
 {
-    options.Authority = "http://localhost:3002";
+    options.Authority = configuration["ApplicationSettings:IdentityAuthority"];
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateAudience = false
@@ -101,8 +101,11 @@ app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 using (var scope = app.Services.CreateScope())
 {

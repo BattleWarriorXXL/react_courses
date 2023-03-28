@@ -37,7 +37,7 @@ public class TaskRepository : ITaskRepository
         return await _context.Tasks.ToListAsync();
     }
 
-    public async Task<TaskEntity> UpdatedAsync(TaskEntity entity)
+    public async Task<TaskEntity> UpdateAsync(TaskEntity entity)
     {
         _context.Tasks.Update(entity);
         await _context.SaveChangesAsync();

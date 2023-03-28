@@ -31,9 +31,9 @@ public class TaskController : ControllerBase
 
     [HttpGet("{taskId}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IActionResult> Get(string userId, Guid taskId)
+    public async Task<IActionResult> Get(string userId, string taskId)
     {
-        var task = await _taskService.GetByIdAsync(userId, taskId);
+        var task = await _taskService.GetByIdAsync(userId, Guid.Parse(taskId));
         return Ok(task);
     }
 
@@ -45,19 +45,19 @@ public class TaskController : ControllerBase
         return Ok(tasks);
     }
 
-    [HttpPut("update/{id}")]
+    [HttpPut("{taskId}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IActionResult> Update(string userId, TaskDto taskDto)
+    public async Task<IActionResult> Update(string userId, string taskId, TaskDto taskDto)
     {
-        var updatedTask = await _taskService.UpdateAsync(userId, taskDto.Id, taskDto);
+        var updatedTask = await _taskService.UpdateAsync(userId, Guid.Parse(taskId), taskDto);
         return Ok(updatedTask);
     }
 
-    [HttpDelete("delete/{id}")]
+    [HttpDelete("{taskId}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IActionResult> Delete(string userId, Guid taskId)
+    public async Task<IActionResult> Delete(string userId, string taskId)
     {
-        var deletedTaskId = await _taskService.DeleteAsync(userId, taskId);
+        var deletedTaskId = await _taskService.DeleteAsync(userId, Guid.Parse(taskId));
         return Ok(deletedTaskId);
     }
 }

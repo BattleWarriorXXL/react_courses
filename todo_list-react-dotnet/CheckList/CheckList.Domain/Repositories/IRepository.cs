@@ -11,7 +11,7 @@ public interface IRepository<TId, T> where TId : struct
 
     Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? predicate = null);
 
-    Task<T> UpdatedAsync(T entity);
+    Task<T> UpdateAsync(T entity);
 
     Task<TId> DeleteAsync(T entity);
 }

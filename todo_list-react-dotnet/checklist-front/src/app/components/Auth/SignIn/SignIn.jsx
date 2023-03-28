@@ -16,9 +16,10 @@ function SignIn({onAuthTypeChanged}) {
 
     const onSubmitSignIn = async (e) => {
         e.preventDefault();
-        
+    
         const currentUser = await AuthService.signIn(email, password);
         setCurrentUser(currentUser);
+        
         navigate(location.pathname);
     };
 

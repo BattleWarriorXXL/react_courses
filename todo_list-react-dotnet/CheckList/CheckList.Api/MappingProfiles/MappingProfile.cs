@@ -12,8 +12,7 @@ public class MappingProfile : Profile
 			.ForMember(d => d.UserId, opt => opt.Ignore());
 
 		CreateMap<TaskDto, TaskEntity>()
-			.ForMember(d => d.Id, opt => opt.Ignore())
-			.ForMember(d => d.IsCompleted, opt => opt.Ignore())
+			.ForMember(d => d.Date, opt => opt.MapFrom(src => src.Date.ToUniversalTime()))
 			.ForMember(d => d.CreatedDate, opt => opt.Ignore())
 			.ForMember(d => d.UpdatedDate, opt => opt.Ignore());
     }
