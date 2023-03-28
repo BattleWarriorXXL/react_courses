@@ -1,5 +1,8 @@
 # Mini paint
 
+## Public url
+https://mini-paint-react.web.app/
+
 ## Desciption
 [Link](https://docs.google.com/document/d/1aWJqtRwaD4gQZBhfxyGuNqXEfNNHtTXyjXWVWVHTS5U/edit#heading=h.5p521hfkjq82)
 
