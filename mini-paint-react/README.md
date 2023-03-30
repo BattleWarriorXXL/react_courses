@@ -43,7 +43,12 @@ yarn run test
 yarn add react-router-dom
 ```
 
-## Firebase set-up
+5. React icons
+``` PS
+yarn add react-icons
+```
+
+6. Firebase set-up
 ``` PS
 yarn add firebase
 ```

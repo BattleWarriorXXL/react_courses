@@ -20,6 +20,10 @@ code {
 
 :root {
   --header-height: 40px;
-  --navigation-width: 200px;
-  --border-color: #dadce0;
+  --canvas-background-color: #404552;
+  --default-border-color: #2d303b;
+  --default-background-color: #383c4a;
+  --active-background-color: #313742;
+  --default-text-color: #cfd6df; 
+  --white-color: #ffffff;
 }

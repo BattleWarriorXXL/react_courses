@@ -1,24 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navigate, Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
+import { FaImages, FaPaintBrush, FaUsers } from "react-icons/fa";
 
 import SignIn from "./components/Auth/SignIn/SignIn";
 import SignUp from "./components/Auth/SignUp/SignUp";
+import PrivateRoutes from "./components/Auth/PrivateRoutes/PrivateRoutes";
+import Header from "./components/Layout/Header/Header";
+import Main from "./components/Layout/Main/Main";
 
 import "./App.css";
-import PrivateRoutes from "./components/Auth/PrivateRoutes/PrivateRoutes";
-import Navigation from "./components/Navigation/Navigation";
-import NavigationItem from "./components/Navigation/NavigationItem/NavigationItem";
-import Header from "./components/Header/Header";
-import Main from "./components/Main/Main";
+import SideMenu from "./components/Layout/Menu/SideMenu/SideMenu";
+import MenuItem from "./components/Layout/Menu/MenuItem/MenuItem";
 
-function App() {
+const App = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
+    const onToggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     return (
         <BrowserRouter>
-            <Header />
-            <Navigation>
-                <NavigationItem title="Canvas" path="/canvas" icon={<div></div>} />
-            </Navigation>
+            <Header isOpen={isMenuOpen} onToggleMenu={onToggleMenu} />
+            <SideMenu isOpen={isMenuOpen} onClose={onToggleMenu}>
+                <MenuItem title="Canvas" path="/canvas" icon={<FaPaintBrush size={20} />} />
+                <MenuItem title="Users" path="/users" icon={<FaUsers size={20} />} />
+                <MenuItem title="Images" path="/images" icon={<FaImages size={20} />} />
+            </SideMenu>
             <Main>
                 <Routes>
                     <Route path="/auth/sign-in" element={<SignIn />} />
@@ -34,6 +43,6 @@ function App() {
             </Main>
         </BrowserRouter>
     );
-}
+};
 
 export default App;
