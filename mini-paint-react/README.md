@@ -52,3 +52,8 @@ yarn add react-icons
 ``` PS
 yarn add firebase
 ```
+
+7. Firebase deploy
+``` PS
+firebase deploy
+```

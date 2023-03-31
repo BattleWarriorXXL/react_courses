@@ -2,7 +2,7 @@ import React from "react";
 
 import "./MenuItem.css";
 
-interface IMenuItemProps {
+export interface IMenuItemProps {
     title: string;
     path: string;
     icon?: React.ReactElement | null;
