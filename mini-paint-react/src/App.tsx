@@ -8,11 +8,12 @@ import SignUp from "./components/Auth/SignUp/SignUp";
 import PrivateRoutes from "./components/Auth/PrivateRoutes/PrivateRoutes";
 import Header from "./components/Layout/Header/Header";
 import Main from "./components/Layout/Main/Main";
-
-import "./App.css";
 import SideMenu from "./components/Layout/Menu/SideMenu/SideMenu";
 import MenuItem from "./components/Layout/Menu/MenuItem/MenuItem";
 import AuthProvider from "./providers/auth.provider";
+
+import "./App.css";
+import AuthorizationRoutes from "./components/Auth/AuthorizationRoutes/AuthorizationRoutes";
 
 const App = () => {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -32,15 +33,16 @@ const App = () => {
                 </SideMenu>
                 <Main>
                     <Routes>
-                        <Route path="/auth/sign-in" element={<SignIn />} />
-                        <Route path="/auth/sign-up" element={<SignUp />} />
-                        <Route path="/" element={"Main"} />
+                        <Route element={<AuthorizationRoutes />}>
+                            <Route path="/sign-in" element={<SignIn />} />
+                            <Route path="/sign-up" element={<SignUp />} />
+                        </Route>
                         <Route element={<PrivateRoutes />}>
                             <Route path="/canvas" element={"Canvas"} />
-                            <Route path="/users" element={"Users"} />
                             <Route path="/images" element={"Images"} />
+                            <Route path="/users" element={"Users"} />
                         </Route>
-                        <Route path="*" element={<Navigate replace to={"/"} />} />
+                        <Route path="*" element={<Navigate replace to={"/images"} />} />
                     </Routes>
                 </Main>
             </AuthProvider>

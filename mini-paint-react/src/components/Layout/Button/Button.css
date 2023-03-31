@@ -1,0 +1,16 @@
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 25px;
+    background-color: var(--default-button-color);
+    color: var(--default-text-color);
+    border: 1px solid var(--default-border-color);
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: var(--active-button-color);
+    border: 1px solid var(--active-border-color);
+}

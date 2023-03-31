@@ -2,11 +2,16 @@ import { createContext } from "react";
 import User from "../models/user.model";
 
 interface AuthContextType {
-    user: User | null;
+    authUser: User | null;
+    setAuthUser: (user: User | null) => void;
+    isAuthenticated: boolean;
 }
 
 const AuthContext = createContext<AuthContextType>({
-    user: null
+    authUser: null,
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    setAuthUser: () => {},
+    isAuthenticated: false
 });
 
 export default AuthContext;

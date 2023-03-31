@@ -22,8 +22,13 @@ code {
   --header-height: 40px;
   --canvas-background-color: #404552;
   --default-border-color: #2d303b;
+  --active-border-color: #02d8f9;
   --default-background-color: #383c4a;
   --active-background-color: #313742;
-  --default-text-color: #cfd6df; 
+  --default-text-color: #cfd6df;
+  --default-input-color: #42414d;
+  --default-button-color: #535865;
+  --active-button-color: #595f6a;
+
   --white-color: #ffffff;
 }

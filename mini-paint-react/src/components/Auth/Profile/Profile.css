@@ -1,0 +1,13 @@
+.profile-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.profile-wrapper label {
+    white-space: nowrap;
+}
+
+.profile-wrapper button {
+    height: 90% !important;
+    margin-left: 15px;
+}

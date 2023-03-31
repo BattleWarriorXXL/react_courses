@@ -48,6 +48,11 @@ yarn add react-router-dom
 yarn add react-icons
 ```
 
+6. Guid typescipt
+``` PS
+yarn add guid-typescript
+```
+
 6. Firebase set-up
 ``` PS
 yarn add firebase

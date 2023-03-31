@@ -45,7 +45,9 @@ const SideMenu = (props: ISideMenuProps) => {
                         const isActive = selectedMenuItemIndex === index;
                         const menuItemProps = child.props as IMenuItemProps;
                         return (
-                            <div className={`side-menu_menu-item ${isActive ? "active" : ""}`} onClick={() => onMenuItemClick(index, menuItemProps.path)}>
+                            <div
+                                className={`side-menu_menu-item ${isActive ? "active" : ""}`}
+                                onClick={() => onMenuItemClick(index, menuItemProps.path)}>
                                 {child}
                             </div>
                         );
