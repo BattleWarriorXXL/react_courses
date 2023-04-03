@@ -1,0 +1,20 @@
+.menu-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 30px;
+}
+
+.menu-item.active {
+    color: var(--white-color);
+}
+
+.menu-item:hover {
+    color: var(--white-color);
+    cursor: pointer;
+}
+
+.menu-item_title {
+    margin-left: 20px;
+}
