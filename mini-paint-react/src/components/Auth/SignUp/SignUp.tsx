@@ -52,7 +52,7 @@ const SignUp = () => {
     };
 
     return (
-        <>
+        <div className="sign-up">
             <div className="sign-up-form-container">
                 <Form title={"Sign Up"} onSubmit={handleSignUpSubmit}>
                     <Input
@@ -80,7 +80,7 @@ const SignUp = () => {
             <ErrorModal
                 errorMessage={errorMessage}
                 onErrorModalClose={() => setErrorMessage(null)} />
-        </>
+        </div>
     );
 };
 

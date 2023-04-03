@@ -25,7 +25,7 @@ const Header = (props: IHeaderProps) => {
                 </div>
             )}
             
-            <label>Mini Paint</label>
+            {/* <label>Mini Paint</label> */}
             
             {isAuthenticated &&
                 <Profile />

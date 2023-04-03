@@ -1,6 +1,6 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, } from "firebase/app";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
-import { getFirestore } from "firebase/firestore/lite";
+import { getFirestore, getDoc, setDoc } from "firebase/firestore";
 import firebaseConfig from "./config";
 
 const app = initializeApp(firebaseConfig);
@@ -13,7 +13,9 @@ const Firebase = {
     db,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    updateProfile
+    updateProfile,
+    getDoc,
+    setDoc
 };
 
 export default Firebase;
