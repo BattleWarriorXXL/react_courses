@@ -1,0 +1,30 @@
+.canvas-line-width-item {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--default-border-color);
+}
+
+.canvas-line-width-item span {
+    display: flex;
+    cursor: pointer;
+}
+
+.canvas-line-width-item:not(:first-child) {
+    margin-left: 5px;
+}
+
+.canvas-line-width-item:hover {
+    cursor: pointer;
+    border: 1px solid var(--white-color);
+}
+
+.canvas-line-width-item.active {
+    border: 1px solid var(--active-border-color);
+}
+
+.canvas-line-width-item.active:hover {
+    cursor: unset !important;
+}

@@ -1,0 +1,35 @@
+.canvas-actions-wrapper {
+    position: fixed;
+    top: 50px;
+    left: 10px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.canvas-actions {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 5px 10px;
+    background-color: var(--default-background-color);
+}
+
+.canvas-actions:not(:first-child) {
+    margin-left: 20px;
+}
+
+.canvas-actions .canvas-action:hover {
+    cursor: pointer;
+    color: var(--white-color);
+}
+
+.canvas-actions .canvas-action:active {
+    color: var(--active-selection-color);
+}
+
+.canvas-actions .canvas-action:not(:first-child) {
+    margin-left: 10px;
+}
