@@ -185,9 +185,25 @@ const Canvas = () => {
         if (!context)
             throw new Error("Canvas context is not initialized.");
 
+        const x1 = startX;
+        const y1 = startY;
+        const x2 = x;
+        const y2 = startY;
+        const x3 = startX + (x - x1) / 8;
+        const y3 = y;
+        const x4 = x1 + (x - x1) / 2;
+        const y4 = y1 - (y - y1) / 2;
+        const x5 = x - (x - x1) / 8;
+        const y5 = y;
+
         context.beginPath();
-        context.moveTo(startX, startY);
-        context.lineTo(x, y);
+        //context.moveTo(startX, startY);
+        context.lineTo(x1, y1);
+        context.lineTo(x2, y2);
+        context.lineTo(x3, y3);
+        context.lineTo(x4, y4);
+        context.lineTo(x5, y5);
+        context.closePath();
         context.stroke();
     };
 
@@ -230,6 +246,7 @@ const Canvas = () => {
             canvas?.removeEventListener("mousemove", handleMouseMove);
             canvas?.removeEventListener("mouseup", handleMouseUp);
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [startX, startY, isDrawing]);
 
     return (
