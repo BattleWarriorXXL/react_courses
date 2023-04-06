@@ -1,0 +1,30 @@
+.canvas-tools {
+    position: fixed;
+    top: 100px;
+    left: 10px;
+    right: -10px;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    padding: 10px 0px;
+    background-color: var(--default-background-color);
+}
+
+.canvas-tools .canvas-tool:not(:first-child) {
+    margin-top: 10px;
+}
+
+.canvas-tools .canvas-tool:hover {
+    cursor: pointer;
+    color: var(--white-color);
+}
+
+.canvas-tool.active {
+    color: var(--active-selection-color);
+}
+
+.canvas-tool.active:hover {
+    color: var(--active-selection-color) !important;
+}

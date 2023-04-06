@@ -1,0 +1,23 @@
+.input-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: var(--default-text-color);
+}
+
+.input-wrapper input {
+    margin-top: 5px;
+    padding: 10px 15px;
+    border: 1px solid var(--default-border-color);
+    background-color: var(--default-input-color);
+    color: var(--default-text-color);
+    font-size: small;
+}
+
+.input:hover {
+    border: 1px solid var(--active-border-color);
+}
+
+.input-wrapper input:focus {
+    outline: 2px solid var(--active-border-color);
+}
