@@ -1,0 +1,22 @@
+.canvas-color-item {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--default-border-color);
+}
+
+.canvas-color-item:not(:first-child) {
+    margin-left: 5px;
+}
+
+.canvas-color-item:hover {
+    cursor: pointer;
+    border: 1px solid var(--white-color);
+}
+
+.canvas-color-item.active {
+    border: 1px solid var(--active-border-color);
+}
+
+.canvas-color-item.active:hover {
+    cursor: unset !important;
+}

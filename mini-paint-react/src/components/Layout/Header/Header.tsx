@@ -20,12 +20,10 @@ const Header = (props: IHeaderProps) => {
                 <div className="header_menu-container" onClick={props.onToggleMenu}>
                     {!props.isOpen
                         ? (<AiOutlineMenuUnfold size={28} />)
-                        : (<AiOutlineMenuFold color="#ffffff" size={28} />)
+                        : (<AiOutlineMenuFold color="#02d8f9" size={28} />)
                     }
                 </div>
             )}
-            
-            {/* <label>Mini Paint</label> */}
             
             {isAuthenticated &&
                 <Profile />

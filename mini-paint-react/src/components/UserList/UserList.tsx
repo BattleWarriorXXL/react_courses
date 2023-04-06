@@ -24,9 +24,9 @@ const UserList = () => {
         const getUsers = async () => {
             setUsers(await UserService.getAll());
         };
-
+        
         getUsers();
-    });
+    }, [users?.length]);
     
     return (
         <Table

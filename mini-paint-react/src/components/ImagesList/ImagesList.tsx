@@ -25,7 +25,7 @@ const ImagesList = () => {
         };
 
         getUsers();
-    });
+    }, [images?.length]);
 
     return (
         <Table

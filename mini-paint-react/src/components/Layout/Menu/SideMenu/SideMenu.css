@@ -13,6 +13,7 @@
 
 .side-menu.open {
     left: 0;
+    box-shadow: 10px 0px 10px var(--active-background-color);
 }
 
 .side-menu_container {

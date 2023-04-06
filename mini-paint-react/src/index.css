@@ -2,6 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 body {
@@ -29,6 +33,7 @@ code {
   --default-input-color: #42414d;
   --default-button-color: #535865;
   --active-button-color: #595f6a;
-
+  --active-selection-color: #02d8f9;
+  
   --white-color: #ffffff;
 }

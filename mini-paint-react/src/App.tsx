@@ -16,6 +16,7 @@ import AuthProvider from "./providers/auth.provider";
 import "./App.css";
 import UserList from "./components/UserList/UserList";
 import ImagesList from "./components/ImagesList/ImagesList";
+import Canvas from "./components/Canvas/Canvas";
 
 const App = () => {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -40,11 +41,11 @@ const App = () => {
                             <Route path="/sign-up" element={<SignUp />} />
                         </Route>
                         <Route element={<PrivateRoutes />}>
-                            <Route path="/canvas" element={"Canvas"} />
+                            <Route path="/canvas" element={<Canvas />} />
                             <Route path="/images" element={<ImagesList />} />
                             <Route path="/users" element={<UserList />} />
                         </Route>
-                        <Route path="*" element={<Navigate replace to={"/images"} />} />
+                        <Route path="*" element={<Navigate replace to={"/canvas"} />} />
                     </Routes>
                 </Main>
             </AuthProvider>
