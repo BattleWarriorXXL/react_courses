@@ -11,7 +11,7 @@ interface ISideMenuProps {
 }
 
 const SideMenu = (props: ISideMenuProps) => {
-    const [selectedMenuItemIndex, setSelectedMenuItemIndex] = useState<number | null>(null);
+    const [selectedMenuItemIndex, setSelectedMenuItemIndex] = useState<number | null>(0);
     const sideMenuRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
 

@@ -33,7 +33,7 @@ const Modal = (props: IModalProps) => {
         };
     });
 
-    if (props.isOpen)
+    if (!props.isOpen)
         return null;
 
     return ReactDOM.createPortal((

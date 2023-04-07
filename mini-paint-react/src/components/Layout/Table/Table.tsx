@@ -1,10 +1,13 @@
 import React from "react";
 
+import ColumnType from "../../../enums/column-type.enum";
+
 import "./Table.css";
 
 export interface TableColumn<T> {
     key: keyof T;
     title: string;
+    type: ColumnType;
 }
 
 interface ITableProps<T> {
@@ -15,6 +18,19 @@ interface ITableProps<T> {
 }
 
 function Table<T>(props: ITableProps<T>) {
+    const resolveColumnData = (column: TableColumn<T>, item: T) => {
+        switch (column.type) {
+        case ColumnType.String:
+            return (item[column.key] as string);
+        case ColumnType.Date:
+            return (new Date(item[column.key] as string).toLocaleString());
+        case ColumnType.Image:
+            return (<img style={{maxHeight: 300}} src={`${item[column.key] as string}`} />);
+        default:
+            return (item[column.key] as string);
+        }
+    };
+
     return (
         <div className="table">
             <h3 className="table_title">{props.title}</h3>
@@ -30,7 +46,7 @@ function Table<T>(props: ITableProps<T>) {
                     <div key={`item_${itemIndex}`} className="table_row" onClick={() => props.onItemClick(item)}>
                         {props.columns.map((column, columnIndex) => (
                             <div key={`column_${columnIndex}`} className="table_row-item">
-                                {(item[column.key] as string)}
+                                {resolveColumnData(column, item)}
                             </div>
                         ))}
                     </div>

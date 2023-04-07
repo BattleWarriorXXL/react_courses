@@ -12,6 +12,12 @@
     background-color: var(--default-background-color);
 }
 
+@media only screen and (max-width: 1368px) {
+    .canvas-tools {
+        top: 35px;
+    }
+}
+
 .canvas-tools .canvas-tool:not(:first-child) {
     margin-top: 10px;
 }

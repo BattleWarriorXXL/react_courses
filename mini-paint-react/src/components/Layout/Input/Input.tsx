@@ -5,6 +5,8 @@ import "./Input.css";
 
 interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label: string;
+    hideLabel?: boolean;
+    defaultValue?: string;
 }
 
 const Input = (props: IInputProps) => {
@@ -12,13 +14,15 @@ const Input = (props: IInputProps) => {
 
     return (
         <div className="input-wrapper">
-            <label>{props.label}</label>
+            {!props.hideLabel &&
+                <label>{props.label}</label>
+            }
             <input
                 id={inputId}
                 className="input"
                 required={props.required}
                 type={props.type}
-                placeholder={`Type your ${props.label.toLocaleLowerCase()} here...`}
+                placeholder={`Type ${props.label.toLocaleLowerCase()} here...`}
                 value={props.value}
                 onChange={props.onChange} />
         </div>

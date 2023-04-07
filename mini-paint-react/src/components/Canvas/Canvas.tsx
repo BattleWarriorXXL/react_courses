@@ -1,16 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 
 import CanvasTools from "./CanvasTools/CanvasTools";
 import CanvasActions from "./CanvasActions/CanvasActions";
 import Tool from "../../enums/tool.enum";
 import Color from "../../enums/color.enum";
 import Width from "../../enums/width.enum";
+import Image from "../../models/image.model";
+import AuthContext from "../../contexts/auth.context";
+import ImageService from "../../services/image.service";
+import Modal from "../Layout/Modal/Modal";
 
 import "./Canvas.css";
 
 const Canvas = () => {
+    const { authUser } = useContext(AuthContext);
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [selectedTool, setSelectedTool] = useState<Tool>(Tool.Hand);
+    const [selectedTool, setSelectedTool] = useState<Tool>(Tool.Pencil);
     const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
     const [drawedImage, setDrawedImage] = useState<ImageData | null>(null);
     const [isDrawing, setIsDrawing] = useState<boolean>(false);
@@ -18,14 +23,39 @@ const Canvas = () => {
     const [startY, setStartY] = useState<number>(0);
     const [canvasWidth, setCanvasWidth] = useState<number>(window.innerWidth);
     const [canvasHeight, setCanvasHeight] = useState<number>(window.innerHeight - 40);
+    const [isImageSuccessfulSaved, setIsImageSuccessfulSaved] = useState<boolean>(false);
 
     const handleMouseDown = (e: MouseEvent) => {
+        handleStartDrawing(e.offsetX, e.offsetY);
+    };
+
+    const handleStartTouch = (e: TouchEvent) => {
+        const canvas = canvasRef.current;
+        if (!canvas)
+            throw new Error("Canvas is not initialized.");
+
+        handleStartDrawing(e.touches[0].pageX - canvas.offsetLeft, e.touches[0].pageY - canvas.offsetTop);
+    };
+
+    const handleStartDrawing = (x: number, y: number) => {
         setIsDrawing(true);
-        setStartX(e.offsetX);
-        setStartY(e.offsetY);
+        setStartX(x);
+        setStartY(y);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
+        handleMove(e.offsetX, e.offsetY);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+        const canvas = canvasRef.current;
+        if (!canvas)
+            throw new Error("Canvas is not initialized.");
+
+        handleMove(e.touches[0].pageX - canvas.offsetLeft, e.touches[0].pageY - canvas.offsetTop);
+    };
+
+    const handleMove = (x: number, y: number) => {
         if (!isDrawing)
             return;
 
@@ -35,16 +65,10 @@ const Canvas = () => {
         if (!canvasRef.current)
             throw new Error("Canvas is not initialized.");
 
-        const x = e.offsetX;
-        const y = e.offsetY;
-
         context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height - 40);
         restoreDrawedImage();
 
         switch (selectedTool) {
-        case Tool.Hand:
-            drawLine(x, y);
-            break;
         case Tool.Pencil:
             drawLine(x, y);
             break;
@@ -75,6 +99,14 @@ const Canvas = () => {
     };
 
     const handleMouseUp = () => {
+        handleEndDrawing();
+    };
+
+    const handleTouchEnd = () => {
+        handleEndDrawing();
+    };
+
+    const handleEndDrawing = () => {
         setIsDrawing(false);
         saveDrawedImage();
     };
@@ -119,6 +151,23 @@ const Canvas = () => {
         context.lineWidth = width;
     };
 
+    const handleCanvasSave = async (title: string) => {
+        const canvas = canvasRef.current;
+        if (!canvas)
+            throw new Error("Canvas is not initialized.");
+
+        const image: Image = {
+            title: title,
+            data: canvasRef.current.toDataURL(),
+            userEmail: authUser!.email,
+            userName: authUser!.username,
+            createdDate: Date().toString()
+        };
+
+        await ImageService.create(image);
+        setIsImageSuccessfulSaved(true);
+    };
+
     const drawLine = (x: number, y: number) => {
         if (!context)
             throw new Error("Canvas context is not initialized.");
@@ -152,7 +201,7 @@ const Canvas = () => {
         context.stroke();
     };
 
-    const  drawTriangle = (x: number, y: number) => {
+    const drawTriangle = (x: number, y: number) => {
         if (!context)
             throw new Error("Canvas context is not initialized.");
 
@@ -244,18 +293,9 @@ const Canvas = () => {
         if (!context)
             throw new Error("Canvas context is not initialized.");
 
-        const strokeStyle = context.strokeStyle;
-        const fillStyle = context.fillStyle;
-
-        context.strokeStyle = "#00000000";
-        context.fillStyle = "#00000000";
-
         const eraseSize = context.lineWidth * 10;
         context.clearRect(startX - eraseSize / 2, startY - eraseSize / 2, eraseSize, eraseSize);
         
-        context.strokeStyle = strokeStyle;
-        context.fillStyle = fillStyle;
-
         setStartX(x);
         setStartY(y);
 
@@ -274,12 +314,20 @@ const Canvas = () => {
         canvas?.addEventListener("mousemove", handleMouseMove);
         canvas?.addEventListener("mouseup", handleMouseUp);
 
+        canvas?.addEventListener("touchstart", handleStartTouch);
+        canvas?.addEventListener("touchmove", handleTouchMove);
+        canvas?.addEventListener("touchend", handleTouchEnd);
+
         setContext(canvasRef.current?.getContext("2d") ?? null);
         
         return () => {
             canvas?.removeEventListener("mousedown", handleMouseDown);
             canvas?.removeEventListener("mousemove", handleMouseMove);
             canvas?.removeEventListener("mouseup", handleMouseUp);
+
+            canvas?.removeEventListener("touchstart", handleStartTouch);
+            canvas?.removeEventListener("touchmove", handleTouchMove);
+            canvas?.removeEventListener("touchend", handleTouchEnd);
         };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [startX, startY, isDrawing]);
@@ -290,7 +338,7 @@ const Canvas = () => {
                 onCanvasColorSelected={handleCanvasColorSelect}
                 onCanvasFillColorSelected={handleCanvasFillColorSelect}
                 onCanvasLineWidthSelected={handleCanvasLineWidthSelect}
-                onCanvasSave={() => console.log("save")}
+                onCanvasSave={(title) => handleCanvasSave(title)}
                 onCanvasClear={handleCanvasClear} />
             <CanvasTools
                 selectedTool={selectedTool}
@@ -300,6 +348,12 @@ const Canvas = () => {
                 width={canvasWidth}
                 height={canvasHeight}
                 style={{ width: canvasWidth, height: canvasHeight }}></canvas>
+            <Modal
+                title="Image saved"
+                isOpen={isImageSuccessfulSaved}
+                onClose={() => setIsImageSuccessfulSaved(false)}>
+                <h4>Image was successful saved</h4>
+            </Modal>
         </div>
     );
 };

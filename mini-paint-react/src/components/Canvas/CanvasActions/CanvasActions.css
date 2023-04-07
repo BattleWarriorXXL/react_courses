@@ -33,3 +33,17 @@
 .canvas-actions .canvas-action:not(:first-child) {
     margin-left: 10px;
 }
+
+@media only screen and (max-width: 1368px) {
+    .canvas-actions-wrapper {
+        top: 46px;
+        left: 70px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .canvas-actions:not(:first-child) {
+        margin-left: 0px;
+        margin-top: 5px;
+    }
+}

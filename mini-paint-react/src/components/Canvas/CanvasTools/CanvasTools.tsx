@@ -1,6 +1,6 @@
 import React from "react";
 import { BsTriangle, BsSquare, BsStar, BsCircle, BsEraser } from "react-icons/bs";
-import { FaSlash, FaRegHandPaper } from "react-icons/fa";
+import { FaSlash } from "react-icons/fa";
 import { BiPolygon, BiPencil } from "react-icons/bi";
 
 import Tool from "../../../enums/tool.enum";
@@ -15,10 +15,6 @@ interface ICanvasToolsProps {
 const CanvasTools = (props: ICanvasToolsProps) => {
     return (
         <div className="canvas-tools">
-            <FaRegHandPaper
-                className={`canvas-tool ${props.selectedTool == Tool.Hand ? "active" : ""}`}
-                size={28}
-                onClick={() => props.onToolClick(Tool.Hand)} />
             <BiPencil
                 className={`canvas-tool ${props.selectedTool == Tool.Pencil ? "active" : ""}`}
                 size={28}

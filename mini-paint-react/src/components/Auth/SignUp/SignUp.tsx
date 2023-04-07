@@ -60,7 +60,7 @@ const SignUp = () => {
                         label="Name"
                         type="text"
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)} />
+                        onChange={(e) => setUsername(e.target.value.toLocaleLowerCase())} />
                     <Input
                         required={true}
                         label="Email"

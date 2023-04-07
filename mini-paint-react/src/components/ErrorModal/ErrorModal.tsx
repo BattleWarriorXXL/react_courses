@@ -12,7 +12,7 @@ const ErrorModal = (props: IErrorModalProps) => {
     return (
         <Modal
             title=":-("
-            isOpen={!props.errorMessage}
+            isOpen={!!props.errorMessage}
             onClose={props.onErrorModalClose}>
             <div className="error-modal-wrapper">
                 {props.errorMessage}

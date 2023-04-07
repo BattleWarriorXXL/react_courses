@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import User from "../../models/user.model";
 import UserService from "../../services/user.service";
 import Table, { TableColumn } from "../Layout/Table/Table";
+import ColumnType from "../../enums/column-type.enum";
 
 import "./UserList.css";
 
@@ -12,11 +13,13 @@ const UserList = () => {
     const tableColumns: TableColumn<User>[] = [
         {
             key: "username",
-            title: "Name"
+            title: "Name",
+            type: ColumnType.String
         },
         {
             key: "email",
-            title: "Email"
+            title: "Email",
+            type: ColumnType.String
         }
     ];
 
