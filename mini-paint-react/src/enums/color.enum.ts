@@ -1,4 +1,5 @@
 enum Color {
+    Transparent = "#00000000",
     Black = "#000000",
     White = "#ffffff",
     Red = "#ff0000",

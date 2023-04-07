@@ -197,7 +197,6 @@ const Canvas = () => {
         const y5 = y;
 
         context.beginPath();
-        //context.moveTo(startX, startY);
         context.lineTo(x1, y1);
         context.lineTo(x2, y2);
         context.lineTo(x3, y3);
@@ -211,9 +210,33 @@ const Canvas = () => {
         if (!context)
             throw new Error("Canvas context is not initialized.");
 
+        const x1 = startX;
+        const y1 = startY;
+        const x2 = x1 + (x - x1) / 3;
+        const y2 = y1 - (y - y1) / 3;
+        const x3 = x1 + (x - x1) / 3 * 2;
+        const y3 = y2;
+        const x4 = x;
+        const y4 = y1;
+        const x5 = x4;
+        const y5 = y - (y - y1) / 3;
+        const x6 = x3;
+        const y6 = y;
+        const x7 = x2;
+        const y7 = y6;
+        const x8 = x1;
+        const y8 = y5;
+
         context.beginPath();
-        context.moveTo(startX, startY);
-        context.lineTo(x, y);
+        context.lineTo(x1, y1);
+        context.lineTo(x2, y2);
+        context.lineTo(x3, y3);
+        context.lineTo(x4, y4);
+        context.lineTo(x5, y5);
+        context.lineTo(x6, y6);
+        context.lineTo(x7, y7);
+        context.lineTo(x8, y8);
+        context.closePath();
         context.stroke();
     };
 
@@ -221,10 +244,22 @@ const Canvas = () => {
         if (!context)
             throw new Error("Canvas context is not initialized.");
 
-        context.beginPath();
-        context.moveTo(startX, startY);
-        context.lineTo(x, y);
-        context.stroke();
+        const strokeStyle = context.strokeStyle;
+        const fillStyle = context.fillStyle;
+
+        context.strokeStyle = "#00000000";
+        context.fillStyle = "#00000000";
+
+        const eraseSize = context.lineWidth * 10;
+        context.clearRect(startX - eraseSize / 2, startY - eraseSize / 2, eraseSize, eraseSize);
+        
+        context.strokeStyle = strokeStyle;
+        context.fillStyle = fillStyle;
+
+        setStartX(x);
+        setStartY(y);
+
+        saveDrawedImage();
     };
 
     useEffect(() => {

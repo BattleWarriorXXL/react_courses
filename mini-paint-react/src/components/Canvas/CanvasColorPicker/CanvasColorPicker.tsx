@@ -8,6 +8,7 @@ import "./CanvasColorPicker.css";
 interface ICanvasColorPickerProps {
     title: React.ReactNode;
     onColorSelected: (color: Color) => void;
+    hasTransparentColor?: boolean;
 }
 
 const CanvasColorPicker = (props: ICanvasColorPickerProps) => {
@@ -26,6 +27,9 @@ const CanvasColorPicker = (props: ICanvasColorPickerProps) => {
             <CanvasColorItem color={Color.Red} isSelected={selectedColor === Color.Red} onClick={() => onColorClick(Color.Red)} />
             <CanvasColorItem color={Color.Green} isSelected={selectedColor === Color.Green} onClick={() => onColorClick(Color.Green)} />
             <CanvasColorItem color={Color.Blue} isSelected={selectedColor === Color.Blue} onClick={() => onColorClick(Color.Blue)} />
+            {props.hasTransparentColor &&
+                <CanvasColorItem color={Color.Transparent} isSelected={selectedColor === Color.Transparent} onClick={() => onColorClick(Color.Transparent)} />
+            }
         </div>
     );
 };

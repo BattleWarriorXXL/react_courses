@@ -39,6 +39,7 @@ const CanvasActions = (props: ICanvasActionsProps) => {
             <div className="canvas-actions">
                 <CanvasColorPicker
                     title={(<BiColorFill size={32} />)}
+                    hasTransparentColor={true}
                     onColorSelected={props.onCanvasFillColorSelected} />
             </div>
             <div className="canvas-actions">
