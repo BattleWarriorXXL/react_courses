@@ -39,10 +39,10 @@ const Modal = (props: IModalProps) => {
     return ReactDOM.createPortal((
         <div className="Modal-container" onClick={props.onClose}>
             <div className="Modal-content" onClick={(e) => e.stopPropagation()}>
-                <div className="Modal-header">
+                <div className="Modal-header" onClick={() => props.onClose()}>
                     <h3>{props.title ?? "Modal"}</h3>
                 </div>
-                <div className="Model-body">
+                <div className="Modal-body">
                     {props.children}
                 </div>
             </div>

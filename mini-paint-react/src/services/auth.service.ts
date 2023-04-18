@@ -1,5 +1,5 @@
 import Firebase from "../firebase/firebase";
-import User from "../models/user.model";
+import User from "../types/user.type";
 import UserService from "./user.service";
 
 const signUp = async (email: string, password: string, name: string): Promise<User> => {

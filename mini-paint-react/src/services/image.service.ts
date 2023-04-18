@@ -1,7 +1,7 @@
 import { collection, doc, getDocs, addDoc, setDoc, query, where } from "firebase/firestore";
 import Firebase from "../firebase/firebase";
 
-import Image from "../models/image.model";
+import Image from "../types/image.type";
 
 const imagesCollection = collection(Firebase.db, "images");
 const imagesRef = doc(imagesCollection);
@@ -16,25 +16,32 @@ const update = async (image: Image): Promise<void> => {
 
 const getByUsername = async (username: string): Promise<Image[]> => {
     const images: Image[] = [];
-    const q = query(imagesCollection, where("userName", ">=", username), where("userName", "<=", username + "\uf8ff"));
+    const q = query(imagesCollection,
+        where("userName", ">=", username),
+        where("userName", "<=", username + "\uf8ff"));
 
     const snapshot = await getDocs(q);
     snapshot.forEach((imageDoc) => {
-        images.push(imageDoc.data() as Image);
+        const image = imageDoc.data() as Image;
+        image.createdDate = Date.parse(image.createdDate.toString());
+        images.push(image);
     });
 
-    return images;
+    return images.sort((a, b) => a.createdDate < b.createdDate ? 1 : -1);
 };
 
 const getAll = async (): Promise<Image[]> => {
     const images: Image[] = [];
-    const snapshot = await getDocs(imagesCollection);
+    const q = query(imagesCollection);
+    const snapshot = await getDocs(q);
 
     snapshot.forEach((imageDoc) => {
-        images.push(imageDoc.data() as Image);
+        const image = imageDoc.data() as Image;
+        image.createdDate = Date.parse(image.createdDate.toString());
+        images.push(image);
     });
 
-    return images;
+    return images.sort((a, b) => a.createdDate < b.createdDate ? 1 : -1);
 };
 
 const ImageService = {

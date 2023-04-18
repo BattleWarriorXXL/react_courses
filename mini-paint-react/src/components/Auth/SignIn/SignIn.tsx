@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../../../contexts/auth.context";
 import AuthService from "../../../services/auth.service";
 import ErrorModal from "../../ErrorModal/ErrorModal";
-import Button from "../../Layout/Button/Button";
-import Form from "../../Layout/Form/Form";
-import Input from "../../Layout/Input/Input";
+import Button from "../../../shared/Button/Button";
+import Form from "../../../shared/Form/Form";
+import Input from "../../../shared/Input/Input";
 
 import "./SignIn.css";
 
@@ -63,14 +63,12 @@ const SignIn = () => {
                         label="Email"
                         type="email"
                         placeholder="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)} />
+                        onValueChanged={setEmail} />
                     <Input
                         label="Password"
                         type="password"
                         placeholder="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)} />
+                        onValueChanged={setPassword} />
                     <Button title="Sign In" type="submit" />
                     <Button title="No account. Try to sign up" onClick={handleSignUpRedirect} />
                 </Form>

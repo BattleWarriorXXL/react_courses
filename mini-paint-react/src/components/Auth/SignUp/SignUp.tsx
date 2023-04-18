@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../../../contexts/auth.context";
 import AuthService from "../../../services/auth.service";
 import ErrorModal from "../../ErrorModal/ErrorModal";
-import Button from "../../Layout/Button/Button";
-import Form from "../../Layout/Form/Form";
-import Input from "../../Layout/Input/Input";
+import Button from "../../../shared/Button/Button";
+import Form from "../../../shared/Form/Form";
+import Input from "../../../shared/Input/Input";
 
 import "./SignUp.css";
 
@@ -59,20 +59,17 @@ const SignUp = () => {
                         required={true}
                         label="Name"
                         type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value.toLocaleLowerCase())} />
+                        onValueChanged={(value) => setUsername(value.toLocaleLowerCase())} />
                     <Input
                         required={true}
                         label="Email"
                         type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)} />
+                        onValueChanged={setEmail} />
                     <Input
                         required={true}
                         label="Password"
                         type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)} />
+                        onValueChanged={setPassword} />
                     <Button title="Sign Up" type="submit" />
                     <Button title="Already have account? Try to Sign In" onClick={handleSignInRedirect} />
                 </Form>

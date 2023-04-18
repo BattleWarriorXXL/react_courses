@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AuthContext from "../contexts/auth.context";
-import User from "../models/user.model";
+import User from "../types/user.type";
 import AuthService from "../services/auth.service";
 
 interface IAuthProviderProps {

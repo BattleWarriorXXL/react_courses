@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "../Layout/Modal/Modal";
+import Modal from "../../shared/Modal/Modal";
 
 import "./ErrorModal.css";
 

@@ -1,6 +1,6 @@
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import Firebase from "../firebase/firebase";
-import User from "../models/user.model";
+import User from "../types/user.type";
 
 const usersCollection = collection(Firebase.db, "users");
 const usersRef = doc(usersCollection);

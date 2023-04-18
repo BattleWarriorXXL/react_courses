@@ -8,6 +8,9 @@ import CanvasLineWidthPicker from "../CanvasLineWidthPicker/CanvasLineWidthPicke
 import CanvasSavingForm from "../CanvasSavingForm/CanvasSavingForm";
 import Color from "../../../enums/color.enum";
 import Width from "../../../enums/width.enum";
+import StrokeColorConfig from "../../../configs/stroke-color.config";
+import FillColorConfig from "../../../configs/fill-color.config";
+import StrokeWidthConfig from "../../../configs/stroke-width-config";
 
 import "./CanvasActions.css";
 
@@ -29,16 +32,19 @@ const CanvasActions = (props: ICanvasActionsProps) => {
             <div className="canvas-actions">
                 <CanvasColorPicker
                     title={(<VscSymbolColor size={32} />)}
-                    onColorSelected={props.onCanvasColorSelected} />
+                    onColorSelected={props.onCanvasColorSelected}
+                    colors={StrokeColorConfig} />
             </div>
             <div className="canvas-actions">
                 <CanvasColorPicker
                     title={(<BiColorFill size={32} />)}
-                    hasTransparentColor={true}
-                    onColorSelected={props.onCanvasFillColorSelected} />
+                    onColorSelected={props.onCanvasFillColorSelected}
+                    colors={FillColorConfig} />
             </div>
             <div className="canvas-actions">
-                <CanvasLineWidthPicker onWidthSelected={props.onCanvasLineWidthSelected} />
+                <CanvasLineWidthPicker
+                    onWidthSelected={props.onCanvasLineWidthSelected}
+                    widths={StrokeWidthConfig} />
             </div>
             <div className="canvas-actions">
                 <AiOutlineClear className="canvas-action" size={32} onClick={handleClear} />

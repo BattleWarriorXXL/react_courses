@@ -3,7 +3,7 @@ interface Image {
     data: string;
     userEmail: string;
     userName: string;
-    createdDate: string;
+    createdDate: string | number;
 }
 
 export default Image;

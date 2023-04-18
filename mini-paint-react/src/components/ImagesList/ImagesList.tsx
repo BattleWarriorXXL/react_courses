@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-import Table, { TableColumn } from "../Layout/Table/Table";
-import Image from "../../models/image.model";
+import Table, { TableColumn } from "../../shared/Table/Table";
+import Image from "../../types/image.type";
 import ImageService from "../../services/image.service";
 import ColumnType from "../../enums/column-type.enum";
-import Modal from "../Layout/Modal/Modal";
-import Input from "../Layout/Input/Input";
+import Modal from "../../shared/Modal/Modal";
+import Input from "../../shared/Input/Input";
 
 import "./ImagesList.css";
 
@@ -58,8 +58,8 @@ const ImagesList = () => {
         <div className="images-list-wrapper">
             <Input
                 label="User name"
-                value={usernameToFind}
-                onChange={(e) => setUsernameToFind(e.target.value.toLocaleLowerCase())} />
+                onValueChanged={setUsernameToFind}
+                delay={300} />
             <Table
                 title="Images"
                 columns={tableColumns}

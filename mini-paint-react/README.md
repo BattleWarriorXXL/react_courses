@@ -62,3 +62,10 @@ yarn add firebase
 ``` PS
 firebase deploy
 ```
+
+8. React Redux
+```PS
+yarn add @reduxjs/toolkit
+yarn add react-redux
+yarn add redux-thunk
+```

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import User from "../../models/user.model";
+import User from "../../types/user.type";
 import UserService from "../../services/user.service";
-import Table, { TableColumn } from "../Layout/Table/Table";
+import Table, { TableColumn } from "../../shared/Table/Table";
 import ColumnType from "../../enums/column-type.enum";
 
 import "./UserList.css";

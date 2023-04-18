@@ -5,12 +5,14 @@ import CanvasActions from "./CanvasActions/CanvasActions";
 import Tool from "../../enums/tool.enum";
 import Color from "../../enums/color.enum";
 import Width from "../../enums/width.enum";
-import Image from "../../models/image.model";
+import Image from "../../types/image.type";
 import AuthContext from "../../contexts/auth.context";
 import ImageService from "../../services/image.service";
-import Modal from "../Layout/Modal/Modal";
+import Modal from "../../shared/Modal/Modal";
+import CanvasUtils from "../../utils/canvas.utils";
 
 import "./Canvas.css";
+import ToolsConfig from "../../configs/tools-config";
 
 const Canvas = () => {
     const { authUser } = useContext(AuthContext);
@@ -24,6 +26,7 @@ const Canvas = () => {
     const [canvasWidth, setCanvasWidth] = useState<number>(window.innerWidth);
     const [canvasHeight, setCanvasHeight] = useState<number>(window.innerHeight - 40);
     const [isImageSuccessfulSaved, setIsImageSuccessfulSaved] = useState<boolean>(false);
+    const [canvasUtils, setCanvasUtils] = useState<CanvasUtils | null>(null);
 
     const handleMouseDown = (e: MouseEvent) => {
         handleStartDrawing(e.offsetX, e.offsetY);
@@ -65,33 +68,36 @@ const Canvas = () => {
         if (!canvasRef.current)
             throw new Error("Canvas is not initialized.");
 
+        if (!canvasUtils)
+            throw new Error("Canvas utils is not initialized.");
+
         context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height - 40);
         restoreDrawedImage();
 
         switch (selectedTool) {
         case Tool.Pencil:
-            drawLine(x, y);
+            canvasUtils.drawLine(startX, startY, x, y);
             break;
         case Tool.Line:
-            drawStraightLine(x, y);
+            canvasUtils.drawStraightLine(startX, startY, x, y);
             break;
         case Tool.Circle:
-            drawCircle(x, y);
+            canvasUtils.drawCircle(startX, startY, x, y);
             break;
         case Tool.Triangle:
-            drawTriangle(x, y);
+            canvasUtils.drawTriangle(startX, startY, x, y);
             break;
         case Tool.Square:
-            drawSquare(x, y);
+            canvasUtils.drawSquare(startX, startY, x, y);
             break;
         case Tool.Star:
-            drawStar(x, y);
+            canvasUtils.drawStar(startX, startY, x, y);
             break;
         case Tool.Polygon:
-            drawPolygon(x, y);
+            canvasUtils.drawPolygon(startX, startY, x, y);
             break;
         case Tool.Eraser:
-            erase(x, y);
+            canvasUtils.erase(startX, startY, x, y);
             break;
         }
 
@@ -156,11 +162,14 @@ const Canvas = () => {
         if (!canvas)
             throw new Error("Canvas is not initialized.");
 
+        if (!authUser)
+            throw new Error("Cannot find authenticated user.");
+
         const image: Image = {
             title: title,
             data: canvasRef.current.toDataURL(),
-            userEmail: authUser!.email,
-            userName: authUser!.username,
+            userEmail: authUser.email,
+            userName: authUser.username,
             createdDate: Date().toString()
         };
 
@@ -168,143 +177,17 @@ const Canvas = () => {
         setIsImageSuccessfulSaved(true);
     };
 
-    const drawLine = (x: number, y: number) => {
-        if (!context)
-            throw new Error("Canvas context is not initialized.");
-
-        context.beginPath();
-        context.moveTo(startX, startY);
-        context.lineTo(x, y);
-        setStartX(x);
-        setStartY(y);
-        context.stroke();
-        saveDrawedImage();
-    };
-
-    const drawStraightLine = (x: number, y: number) => {
-        if (!context)
-            throw new Error("Canvas context is not initialized.");
-
-        context.beginPath();
-        context.moveTo(startX, startY);
-        context.lineTo(x, y);
-        context.stroke();
-    };
-
-    const drawCircle = (x: number, y: number) => {
-        if (!context)
-            throw new Error("Canvas context is not initialized.");
-
-        const radius = Math.sqrt(Math.pow(x - startX, 2) + Math.pow(y - startY, 2));
-        context.beginPath();
-        context.arc(startX, startY, radius, 0, Math.PI * 2);
-        context.stroke();
-    };
-
-    const drawTriangle = (x: number, y: number) => {
-        if (!context)
-            throw new Error("Canvas context is not initialized.");
-
-        const x1 = startX;
-        const y1 = y;
-        const x2 = x1 + (x - startX) / 2;
-        const y2 = startY;
-        const x3 = x;
-        const y3 = y;
-
-        context.beginPath();
-        context.lineTo(x1, y1);
-        context.lineTo(x2, y2);
-        context.lineTo(x3, y3);
-        context.closePath();
-        context.stroke();
-    };
-
-    const drawSquare = (x: number, y: number) => {
-        if (!context)
-            throw new Error("Canvas context is not initialized.");
-
-        const width = x - startX;
-        const height = y - startY;
-        context.strokeRect(startX, startY, width, height);
-        context.fillRect(startX, startY, width, height);
-    };
-
-    const drawStar = (x: number, y: number) => {
-        if (!context)
-            throw new Error("Canvas context is not initialized.");
-
-        const x1 = startX;
-        const y1 = startY;
-        const x2 = x;
-        const y2 = startY;
-        const x3 = startX + (x - x1) / 8;
-        const y3 = y;
-        const x4 = x1 + (x - x1) / 2;
-        const y4 = y1 - (y - y1) / 2;
-        const x5 = x - (x - x1) / 8;
-        const y5 = y;
-
-        context.beginPath();
-        context.lineTo(x1, y1);
-        context.lineTo(x2, y2);
-        context.lineTo(x3, y3);
-        context.lineTo(x4, y4);
-        context.lineTo(x5, y5);
-        context.closePath();
-        context.stroke();
-    };
-
-    const drawPolygon = (x: number, y: number) => {
-        if (!context)
-            throw new Error("Canvas context is not initialized.");
-
-        const x1 = startX;
-        const y1 = startY;
-        const x2 = x1 + (x - x1) / 3;
-        const y2 = y1 - (y - y1) / 3;
-        const x3 = x1 + (x - x1) / 3 * 2;
-        const y3 = y2;
-        const x4 = x;
-        const y4 = y1;
-        const x5 = x4;
-        const y5 = y - (y - y1) / 3;
-        const x6 = x3;
-        const y6 = y;
-        const x7 = x2;
-        const y7 = y6;
-        const x8 = x1;
-        const y8 = y5;
-
-        context.beginPath();
-        context.lineTo(x1, y1);
-        context.lineTo(x2, y2);
-        context.lineTo(x3, y3);
-        context.lineTo(x4, y4);
-        context.lineTo(x5, y5);
-        context.lineTo(x6, y6);
-        context.lineTo(x7, y7);
-        context.lineTo(x8, y8);
-        context.closePath();
-        context.stroke();
-    };
-
-    const erase = (x: number, y: number) => {
-        if (!context)
-            throw new Error("Canvas context is not initialized.");
-
-        const eraseSize = context.lineWidth * 10;
-        context.clearRect(startX - eraseSize / 2, startY - eraseSize / 2, eraseSize, eraseSize);
-        
-        setStartX(x);
-        setStartY(y);
-
-        saveDrawedImage();
+    const onWindowSizeChange = () => {
+        setCanvasWidth(window.innerWidth);
+        setCanvasHeight(window.innerHeight- 40);
     };
 
     useEffect(() => {
-        setCanvasWidth(window.innerWidth);
-        setCanvasHeight(window.innerHeight- 40);
+        window.addEventListener("resize", onWindowSizeChange);
+
+        return () => {
+            window.removeEventListener("resize", onWindowSizeChange);
+        };
     }, [canvasWidth, canvasHeight]);
 
     useEffect(() => {
@@ -318,8 +201,10 @@ const Canvas = () => {
         canvas?.addEventListener("touchmove", handleTouchMove);
         canvas?.addEventListener("touchend", handleTouchEnd);
 
-        setContext(canvasRef.current?.getContext("2d") ?? null);
-        
+        const currentContext = canvas?.getContext("2d") ?? null;
+        setContext(currentContext);
+        setCanvasUtils(new CanvasUtils({ context: currentContext, setStartX, setStartY, saveDrawedImage, isDrawing }));
+
         return () => {
             canvas?.removeEventListener("mousedown", handleMouseDown);
             canvas?.removeEventListener("mousemove", handleMouseMove);
@@ -342,7 +227,8 @@ const Canvas = () => {
                 onCanvasClear={handleCanvasClear} />
             <CanvasTools
                 selectedTool={selectedTool}
-                onToolClick={(tool) => setSelectedTool(tool)} />
+                onToolClick={(tool) => setSelectedTool(tool)}
+                tools={ToolsConfig}/>
             <canvas
                 ref={canvasRef}
                 width={canvasWidth}

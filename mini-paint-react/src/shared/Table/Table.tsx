@@ -1,6 +1,6 @@
 import React from "react";
 
-import ColumnType from "../../../enums/column-type.enum";
+import ColumnType from "../../enums/column-type.enum";
 
 import "./Table.css";
 

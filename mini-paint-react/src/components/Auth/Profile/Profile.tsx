@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../../contexts/auth.context";
 import AuthService from "../../../services/auth.service";
-import Button from "../../Layout/Button/Button";
+import Button from "../../../shared/Button/Button";
 
 import "./Profile.css";
 

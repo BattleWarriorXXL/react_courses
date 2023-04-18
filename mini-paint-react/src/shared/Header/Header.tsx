@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { AiOutlineMenuUnfold, AiOutlineMenuFold } from "react-icons/ai";
 
-import AuthContext from "../../../contexts/auth.context";
-import Profile from "../../Auth/Profile/Profile";
+import AuthContext from "../../contexts/auth.context";
+import Profile from "../../components/Auth/Profile/Profile";
 
 import "./Header.css";
 
