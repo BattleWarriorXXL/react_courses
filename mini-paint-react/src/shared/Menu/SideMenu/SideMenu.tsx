@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import MenuItem, { IMenuItemProps } from "../MenuItem/MenuItem";
+import { getMenuIndexByLocation } from "../../../utils/menu.utils";
 
 import "./SideMenu.css";
 
@@ -11,9 +13,10 @@ interface ISideMenuProps {
 }
 
 const SideMenu = (props: ISideMenuProps) => {
+    const navigate = useNavigate();
+    const location = useLocation();
     const [selectedMenuItemIndex, setSelectedMenuItemIndex] = useState<number | null>(0);
     const sideMenuRef = useRef<HTMLDivElement>(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
@@ -31,6 +34,10 @@ const SideMenu = (props: ISideMenuProps) => {
         };
 
     });
+
+    useEffect(() => {
+        setSelectedMenuItemIndex(getMenuIndexByLocation(location.pathname));
+    }, [location.pathname]);
 
     const onMenuItemClick = (index: number, path: string) => {
         setSelectedMenuItemIndex(index);
