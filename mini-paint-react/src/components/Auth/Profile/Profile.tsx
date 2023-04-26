@@ -1,18 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../../../contexts/auth.context";
-import AuthService from "../../../services/auth.service";
+
+import { RootState } from "../../../store/store";
+import { useAppDispatch } from "../../../hooks/store.hook";
+import { signOut } from "../../../store/auth/auth.actions";
+import { useSelector } from "react-redux";
 import Button from "../../../shared/Button/Button";
 
 import "./Profile.css";
 
 const Profile = () => {
-    const { authUser, setAuthUser } = useContext(AuthContext);
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const { user: authUser } = useSelector((state: RootState) => state.auth);
 
     const handleSignOut = async () => {
-        await AuthService.signOut();
-        setAuthUser(null);
+        await dispatch(signOut());
         
         navigate("/sign-in");
     };

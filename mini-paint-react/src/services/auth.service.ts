@@ -46,11 +46,16 @@ const getCurrentUser = (): User | null => {
     return JSON.parse(user);
 };
 
+const isAuthenticated = (): boolean => {
+    return getCurrentUser() ? true : false;
+};
+
 const AuthService = {
     signUp,
     signIn,
     signOut,
-    getCurrentUser
+    getCurrentUser,
+    isAuthenticated
 };
 
 export default AuthService;

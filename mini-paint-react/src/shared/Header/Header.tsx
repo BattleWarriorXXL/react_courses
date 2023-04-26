@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { AiOutlineMenuUnfold, AiOutlineMenuFold } from "react-icons/ai";
 
-import AuthContext from "../../contexts/auth.context";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 import Profile from "../../components/Auth/Profile/Profile";
 
 import "./Header.css";
@@ -12,7 +13,7 @@ interface IHeaderProps {
 }
 
 const Header = (props: IHeaderProps) => {
-    const { isAuthenticated } = useContext(AuthContext);
+    const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
     return (
         <div className="header-container">

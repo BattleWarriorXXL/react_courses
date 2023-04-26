@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-import AuthContext from "../../../contexts/auth.context";
-import LocationService from "../../../services/location.service";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
 
 const AuthorizationRoutes = () => {
-    const { isAuthenticated } = useContext(AuthContext);
+    const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
     return (
         isAuthenticated
-            ? <Navigate to={LocationService.getLastLocation()} />
+            ? <Navigate to={"images"} />
             : <Outlet />
     );
 };

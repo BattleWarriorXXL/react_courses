@@ -1,21 +1,23 @@
-import React, { useEffect, useRef, useState, useContext } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 import CanvasTools from "./CanvasTools/CanvasTools";
 import CanvasActions from "./CanvasActions/CanvasActions";
 import Tool from "../../enums/tool.enum";
 import Color from "../../enums/color.enum";
 import Width from "../../enums/width.enum";
 import Image from "../../types/image.type";
-import AuthContext from "../../contexts/auth.context";
 import ImageService from "../../services/image.service";
 import Modal from "../../shared/Modal/Modal";
 import CanvasUtils from "../../utils/canvas.utils";
-
-import "./Canvas.css";
 import ToolsConfig from "../../configs/tools-config";
 
+import "./Canvas.css";
+
 const Canvas = () => {
-    const { authUser } = useContext(AuthContext);
+    const { user: authUser } = useSelector((state: RootState) => state.auth);
+
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [selectedTool, setSelectedTool] = useState<Tool>(Tool.Pencil);
     const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);

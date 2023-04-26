@@ -1,49 +1,43 @@
-import { FirebaseError } from "firebase/app";
-import React, { FormEvent, useState, useContext } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import AuthContext from "../../../contexts/auth.context";
-import AuthService from "../../../services/auth.service";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
+import { signUp } from "../../../store/auth/auth.actions";
+import { useAppDispatch } from "../../../hooks/store.hook";
+
 import ErrorModal from "../../ErrorModal/ErrorModal";
 import Button from "../../../shared/Button/Button";
 import Form from "../../../shared/Form/Form";
 import Input from "../../../shared/Input/Input";
+import Loader from "../../../shared/Loader/Loader";
 
 import "./SignUp.css";
 
 const SignUp = () => {
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const { isAuthenticated, error, loading } = useSelector((state: RootState) => state.auth);
+
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [username, setUsername] = useState<string>("");
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const { setAuthUser } = useContext(AuthContext);
-    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isAuthenticated)
+            navigate("/images");
+    }, [isAuthenticated, navigate]);
+
+    useEffect(() => {
+        if (error)
+            setErrorMessage(error);
+    }, [error]);
 
     const handleSignUpSubmit = async (e: FormEvent) => {
         e.preventDefault();
         
-        try {
-            const user = await AuthService.signUp(email, password, username);
-            setAuthUser(user);
-            navigate("/");
-        }
-        catch (error: unknown) {
-            if (error instanceof FirebaseError) {
-                switch (error.code) {
-                case "auth/invalid-email":
-                    setErrorMessage("Please enter a valid email address.");
-                    break;
-                case "auth/email-already-in-use":
-                    setErrorMessage(`Email ${email} already in use.`);
-                    break;
-                case "auth/weak-password":
-                    setErrorMessage("Password should be at least 6 characters.");
-                    break;
-                default:                    
-                    setErrorMessage("An error occurred. Please try again later.");
-                }
-            }
-        }
+        await dispatch(signUp({ email, password, name: username }));
     };
 
     const handleSignInRedirect = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -74,6 +68,7 @@ const SignUp = () => {
                     <Button title="Already have account? Try to Sign In" onClick={handleSignInRedirect} />
                 </Form>
             </div>
+            { loading && <Loader /> }
             <ErrorModal
                 errorMessage={errorMessage}
                 onErrorModalClose={() => setErrorMessage(null)} />

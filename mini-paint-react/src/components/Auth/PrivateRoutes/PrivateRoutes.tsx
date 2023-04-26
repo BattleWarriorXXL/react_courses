@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
-
-import AuthContext from "../../../contexts/auth.context";
+import { RootState } from "../../../store/store";
 
 const PrivateRoutes = () => {
-    const { isAuthenticated } = useContext(AuthContext);
-
+    const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+    console.log(isAuthenticated);
     return (
         isAuthenticated
             ? <Outlet />
