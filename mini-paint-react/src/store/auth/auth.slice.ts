@@ -14,41 +14,47 @@ const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {},
-    extraReducers: {
-        [signUp.pending.type]: (state: AuthState) => {
-            state.loading = true;
-            state.error = null;
-        },
-        [signUp.fulfilled.type]: (state: AuthState, { payload }) => {
-            state.loading = false;
-            state.isAuthenticated = true;
-            state.user = payload;
-        },
-        [signUp.rejected.type]: (state: AuthState, { error }) => {
-            state.loading = false;
-            state.error = error.message;
-        },
-        [signIn.pending.type]: (state: AuthState) => {
-            state.loading = true;
-            state.error = null;
-        },
-        [signIn.fulfilled.type]: (state: AuthState, { payload }) => {
-            state.loading = false;
-            state.isAuthenticated = true;
-            state.user = payload;
-        },
-        [signIn.rejected.type]: (state: AuthState, { error }) => {
-            state.loading = false;
-            state.error = error.message;
-        },
-        [signOut.pending.type]: (state: AuthState) => {
-            state.loading = true;
-        },
-        [signOut.fulfilled.type]: (state: AuthState) => {
-            state.loading = false;
-            state.isAuthenticated = false;
-            state.user = null;
-        }
+    extraReducers: (builder) => {
+        builder
+            .addCase(signUp.pending, (state: AuthState) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(signUp.fulfilled, (state: AuthState, { payload }) => {
+                state.loading = false;
+                state.isAuthenticated = true;
+                state.user = payload ?? null;
+            })
+            .addCase(signUp.rejected, (state: AuthState, { error }) => {
+                state.loading = false;
+                state.error = error.message ?? null;
+            })
+            .addCase(signIn.pending, (state: AuthState) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(signIn.fulfilled, (state: AuthState, { payload }) => {
+                state.loading = false;
+                state.isAuthenticated = true;
+                state.user = payload ?? null;
+            })
+            .addCase(signIn.rejected, (state: AuthState, { error }) => {
+                state.loading = false;
+                state.error = error.message ?? null;
+            })
+            .addCase(signOut.pending, (state: AuthState) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(signOut.fulfilled, (state: AuthState) => {
+                state.loading = false;
+                state.isAuthenticated = false;
+                state.user = null;
+            })
+            .addCase(signOut.rejected, (state: AuthState, { error }) => {
+                state.loading = false;
+                state.error = error.message ?? null;
+            });
     }
 });
 
