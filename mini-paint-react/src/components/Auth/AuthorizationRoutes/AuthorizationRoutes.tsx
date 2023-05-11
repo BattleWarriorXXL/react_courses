@@ -1,11 +1,11 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
-
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
+
+import { isAuthenticatedSelector } from "../../../store/auth/auth.selector";
 
 const AuthorizationRoutes = () => {
-    const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+    const isAuthenticated = useSelector(isAuthenticatedSelector);
 
     return (
         isAuthenticated
